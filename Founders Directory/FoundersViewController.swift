@@ -21,21 +21,37 @@ class FoundersViewController : UITableViewController {
     // MARK: - Properties
     
     var founders = [
-        Founder(name: "Chewbacca", company: "Millennial Enterprises", phone: "801-787-9015", email: "chewie@gmail.com", photoName: "founder1"),
-        Founder(name: "Leia Organa", company: "Death Stars R Us", phone: "408-555-1212", email: "leia@gmail.com", photoName: "founder2"),
-        Founder(name: "Han Solo", company: "Millennial Enterprises", phone: "946-555-1212", email: "han@gmail.com", photoName: "founder3"),
-        Founder(name: "Luke", company: "Forceful Feed Co.", phone: "385-555-1212", email: "luke@gmail.com", photoName: "founder4")
+        Founder(name: "Chewbacca",
+                company: "Millennial Enterprises",
+                phone: "801-787-9015",
+                email: "chewie@gmail.com",
+                photoName: "founder1",
+                spouseName: "Chewette",
+                profile: "Chewbacca, nicknamed \"Chewie\", is a fictional character in the Star Wars franchise. He is a Wookiee, a tall, hirsute biped and intelligent species from the planet Kashyyyk. Chewbacca is the loyal friend and associate of Han Solo, and serves as co-pilot on Solo's ship, the Millenium Falcon."),
+        Founder(name: "Leia Organa",
+                company: "Death Stars R Us",
+                phone: "408-555-1212",
+                email: "leia@gmail.com",
+                photoName: "founder2",
+                spouseName: "Han",
+                profile: ""),
+        Founder(name: "Han Solo",
+                company: "Millennial Enterprises",
+                phone: "946-555-1212",
+                email: "han@gmail.com",
+                photoName: "founder3",
+                spouseName: "Leia",
+                profile: ""),
+        Founder(name: "Luke Skywalker",
+                company: "Forceful Feed Co.",
+                phone: "385-555-1212",
+                email: "luke@gmail.com",
+                photoName: "founder4",
+                spouseName: "",
+                profile: "")
         
     ]
 
-    // MARK: - View controller lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        founders[0].profile = "Chewbacca, nicknamed \"Chewie\", is a fictional character in the Star Wars franchise. He is a Wookiee, a tall, hirsute biped and intelligent species from the planet Kashyyyk. Chewbacca is the loyal friend and associate of Han Solo, and serves as co-pilot on Solo's ship, the Millenium Falcon."
-    }
-    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -19,11 +19,13 @@ class Founder {
     var spouseName = ""
     var profile = ""
 
-    init(name: String, company: String, phone: String, email: String, photoName: String) {
+    init(name: String, company: String, phone: String, email: String, photoName: String, spouseName: String, profile: String) {
         self.name = name
         self.company = company
         self.phone = phone
         self.email = email
         self.photoName = photoName
+        self.spouseName = spouseName
+        self.profile = profile
     }
 }
