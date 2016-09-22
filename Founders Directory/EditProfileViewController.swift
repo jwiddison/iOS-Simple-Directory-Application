@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditProfileViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EditProfileViewController : UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: - Constants
     
@@ -60,6 +60,17 @@ class EditProfileViewController : UIViewController, UIImagePickerControllerDeleg
             phonePrivateSwitch.isOn = !founder.phoneListed
             profileText.text = founder.profile
         }
+    }
+
+    // MARK: - Table view delegate
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        nameText.resignFirstResponder()
+        companyText.resignFirstResponder()
+        emailText.resignFirstResponder()
+        phoneText.resignFirstResponder()
+        spouseText.resignFirstResponder()
+        profileText.resignFirstResponder()
     }
 
     // MARK: - Actions
