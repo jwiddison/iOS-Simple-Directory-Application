@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,34 +12,57 @@
         <scene sceneID="ywk-lU-1d8">
             <objects>
                 <tableViewController id="ELe-5b-d45" customClass="FoundersViewController" customModule="Founders_Directory" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="cki-tc-Hqe">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" id="cki-tc-Hqe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FounderCell" textLabel="Q53-j2-mna" detailTextLabel="7oQ-oo-s36" style="IBUITableViewCellStyleSubtitle" id="eHN-Fl-kzu">
-                                <rect key="frame" x="0.0" y="92" width="375" height="60"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FounderCell" id="eHN-Fl-kzu" customClass="FounderCell" customModule="Founders_Directory" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eHN-Fl-kzu" id="Quw-dJ-9jl">
-                                    <frame key="frameInset" width="342" height="59"/>
+                                    <frame key="frameInset" width="342" height="71"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Q53-j2-mna">
-                                            <frame key="frameInset" minX="15" minY="12" width="34" height="21"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NK6-vK-JLm">
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="NK6-vK-JLm" secondAttribute="height" multiplier="1:1" id="8TR-Nj-L6v"/>
+                                                <constraint firstAttribute="width" constant="60" id="YBz-ir-BPM"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yUj-5F-Wr3">
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" id="7kK-8q-RJN"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" id="dwC-cx-JdB"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7oQ-oo-s36">
-                                            <frame key="frameInset" minX="15" minY="33" width="44" height="15"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wO5-bv-v3q">
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" id="RRB-Qo-DHW"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" id="yLx-MG-r5Q"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="NK6-vK-JLm" firstAttribute="leading" secondItem="Quw-dJ-9jl" secondAttribute="leadingMargin" constant="8" id="1z2-l4-IWT"/>
+                                        <constraint firstItem="yUj-5F-Wr3" firstAttribute="centerY" secondItem="Quw-dJ-9jl" secondAttribute="centerY" constant="-7" id="9vm-uY-25G"/>
+                                        <constraint firstItem="wO5-bv-v3q" firstAttribute="leading" secondItem="yUj-5F-Wr3" secondAttribute="leading" id="C0v-ZK-Ift"/>
+                                        <constraint firstItem="wO5-bv-v3q" firstAttribute="top" secondItem="yUj-5F-Wr3" secondAttribute="bottom" constant="2" id="Ddc-nH-rgn"/>
+                                        <constraint firstItem="yUj-5F-Wr3" firstAttribute="leading" secondItem="NK6-vK-JLm" secondAttribute="trailing" constant="8" id="bbs-cn-XX2"/>
+                                        <constraint firstItem="NK6-vK-JLm" firstAttribute="centerY" secondItem="Quw-dJ-9jl" secondAttribute="centerY" id="cwg-dG-DZ7"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="founderCompanyLabel" destination="wO5-bv-v3q" id="UbA-o3-OgV"/>
+                                    <outlet property="founderImageView" destination="NK6-vK-JLm" id="020-lv-DCF"/>
+                                    <outlet property="founderNameLabel" destination="yUj-5F-Wr3" id="UGa-MW-P9d"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

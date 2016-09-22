@@ -68,18 +68,20 @@ class FoundersViewController : UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.CellIdentifier, for: indexPath)
         let founder = founders[indexPath.row]
 
-        cell.textLabel?.text = founder.name
-        cell.detailTextLabel?.text = founder.company
-        
-        if let imageView = cell.imageView {
-            // Note that when we use one of the default tableview cell types, we get the
-            // imageview property for free.  Here we load it from one of the pre-loaded
-            // image assets and then make it circular by setting the corner radius.
-            imageView.image = UIImage(named: founder.photoName)
-            imageView.layer.cornerRadius = Storyboard.CornerRadius
-            imageView.layer.masksToBounds = true
-            imageView.layer.borderColor = UIColor.gray.cgColor
-            imageView.layer.borderWidth = 1.0
+        if let founderCell = cell as? FounderCell {
+            founderCell.founderNameLabel?.text = founder.name
+            founderCell.founderCompanyLabel?.text = founder.company
+            
+            if let imageView = founderCell.founderImageView {
+                // Note that when we use one of the default tableview cell types, we get the
+                // imageview property for free.  Here we load it from one of the pre-loaded
+                // image assets and then make it circular by setting the corner radius.
+                imageView.image = UIImage(named: founder.photoName)
+                imageView.layer.cornerRadius = Storyboard.CornerRadius
+                imageView.layer.masksToBounds = true
+                imageView.layer.borderColor = UIColor.gray.cgColor
+                imageView.layer.borderWidth = 1.0
+            }
         }
 
         return cell

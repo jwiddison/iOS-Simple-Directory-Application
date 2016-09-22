@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F2534011D937CF200530F0E /* FounderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2534001D937CF200530F0E /* FounderCell.swift */; };
 		3FDEC9631D9351B100E82C48 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDEC9621D9351B100E82C48 /* Helper.swift */; };
 		3FF52DF01D931AA700C665EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF52DEF1D931AA700C665EE /* AppDelegate.swift */; };
 		3FF52DF51D931AA700C665EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FF52DF31D931AA700C665EE /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F2534001D937CF200530F0E /* FounderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FounderCell.swift; sourceTree = "<group>"; };
 		3FDEC9621D9351B100E82C48 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		3FF52DEC1D931AA700C665EE /* Founders Directory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Founders Directory.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FF52DEF1D931AA700C665EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				3FF52DF31D931AA700C665EE /* Main.storyboard */,
+				3F2534001D937CF200530F0E /* FounderCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 				3FF52DF01D931AA700C665EE /* AppDelegate.swift in Sources */,
 				3FF52E0A1D932A4D00C665EE /* ProfileViewController.swift in Sources */,
 				3FF52E0C1D93467200C665EE /* EditProfileViewController.swift in Sources */,
+				3F2534011D937CF200530F0E /* FounderCell.swift in Sources */,
 				3FF52E081D931DCF00C665EE /* Founder.swift in Sources */,
 				3FDEC9631D9351B100E82C48 /* Helper.swift in Sources */,
 			);
