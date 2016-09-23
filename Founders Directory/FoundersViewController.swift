@@ -55,6 +55,9 @@ class FoundersViewController : UITableViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        founders[0].preferredFirstName = "Chewie"
+        founders[1].isPhoneListed = false
+        
         if let destVC = segue.destination as? ProfileViewController {
             if let indexPath = sender as? IndexPath {
                 destVC.founder = founders[indexPath.row]
@@ -69,18 +72,16 @@ class FoundersViewController : UITableViewController {
         let founder = founders[indexPath.row]
 
         if let founderCell = cell as? FounderCell {
-            founderCell.founderNameLabel?.text = founder.name
-            founderCell.founderCompanyLabel?.text = founder.company
+            founderCell.founderNameLabel?.text = founder.preferredFullName
+            founderCell.founderCompanyLabel?.text = founder.organizationName
             
             if let imageView = founderCell.founderImageView {
                 // Note that when we use one of the default tableview cell types, we get the
                 // imageview property for free.  Here we load it from one of the pre-loaded
                 // image assets and then make it circular by setting the corner radius.
-                imageView.image = UIImage(named: founder.photoName)
+                imageView.image = UIImage(named: founder.imageUrl)
                 imageView.layer.cornerRadius = Storyboard.CornerRadius
                 imageView.layer.masksToBounds = true
-                imageView.layer.borderColor = UIColor.gray.cgColor
-                imageView.layer.borderWidth = 1.0
             }
         }
 

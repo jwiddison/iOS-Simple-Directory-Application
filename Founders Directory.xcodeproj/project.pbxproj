@@ -8,7 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		3F2534011D937CF200530F0E /* FounderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2534001D937CF200530F0E /* FounderCell.swift */; };
-		3FDEC9631D9351B100E82C48 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDEC9621D9351B100E82C48 /* Helper.swift */; };
+		3FDEC9631D9351B100E82C48 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDEC9621D9351B100E82C48 /* Helpers.swift */; };
+		3FF2535D1D94A60300B50FF3 /* CircleImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF2535C1D94A60300B50FF3 /* CircleImageButton.swift */; };
+		3FF253611D94E9F000B50FF3 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF253601D94E9F000B50FF3 /* CircleImageView.swift */; };
+		3FF253631D95865500B50FF3 /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF253621D95865500B50FF3 /* InfoCell.swift */; };
+		3FF253651D95865D00B50FF3 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF253641D95865D00B50FF3 /* ProfileCell.swift */; };
 		3FF52DF01D931AA700C665EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF52DEF1D931AA700C665EE /* AppDelegate.swift */; };
 		3FF52DF51D931AA700C665EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FF52DF31D931AA700C665EE /* Main.storyboard */; };
 		3FF52DF71D931AA700C665EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FF52DF61D931AA700C665EE /* Assets.xcassets */; };
@@ -21,7 +25,11 @@
 
 /* Begin PBXFileReference section */
 		3F2534001D937CF200530F0E /* FounderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FounderCell.swift; sourceTree = "<group>"; };
-		3FDEC9621D9351B100E82C48 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		3FDEC9621D9351B100E82C48 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		3FF2535C1D94A60300B50FF3 /* CircleImageButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageButton.swift; sourceTree = "<group>"; };
+		3FF253601D94E9F000B50FF3 /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
+		3FF253621D95865500B50FF3 /* InfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
+		3FF253641D95865D00B50FF3 /* ProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		3FF52DEC1D931AA700C665EE /* Founders Directory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Founders Directory.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FF52DEF1D931AA700C665EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FF52DF41D931AA700C665EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -45,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3FF253661D95CD4600B50FF3 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				3FDEC9621D9351B100E82C48 /* Helpers.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		3FF52DE31D931AA700C665EE = {
 			isa = PBXGroup;
 			children = (
@@ -67,6 +83,7 @@
 				3FF52E031D931AE500C665EE /* Model */,
 				3FF52E021D931ADF00C665EE /* View */,
 				3FF52E011D931AD800C665EE /* Controller */,
+				3FF253661D95CD4600B50FF3 /* Utilities */,
 				3FF52E041D931AED00C665EE /* Supporting Files */,
 				3FF52DF61D931AA700C665EE /* Assets.xcassets */,
 			);
@@ -78,7 +95,6 @@
 			children = (
 				3FF52E0B1D93467200C665EE /* EditProfileViewController.swift */,
 				3FF52E051D931B2000C665EE /* FoundersViewController.swift */,
-				3FDEC9621D9351B100E82C48 /* Helper.swift */,
 				3FF52E091D932A4D00C665EE /* ProfileViewController.swift */,
 			);
 			name = Controller;
@@ -89,6 +105,10 @@
 			children = (
 				3FF52DF31D931AA700C665EE /* Main.storyboard */,
 				3F2534001D937CF200530F0E /* FounderCell.swift */,
+				3FF253621D95865500B50FF3 /* InfoCell.swift */,
+				3FF253641D95865D00B50FF3 /* ProfileCell.swift */,
+				3FF2535C1D94A60300B50FF3 /* CircleImageButton.swift */,
+				3FF253601D94E9F000B50FF3 /* CircleImageView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -186,11 +206,15 @@
 			files = (
 				3FF52E061D931B2000C665EE /* FoundersViewController.swift in Sources */,
 				3FF52DF01D931AA700C665EE /* AppDelegate.swift in Sources */,
+				3FF2535D1D94A60300B50FF3 /* CircleImageButton.swift in Sources */,
 				3FF52E0A1D932A4D00C665EE /* ProfileViewController.swift in Sources */,
 				3FF52E0C1D93467200C665EE /* EditProfileViewController.swift in Sources */,
 				3F2534011D937CF200530F0E /* FounderCell.swift in Sources */,
 				3FF52E081D931DCF00C665EE /* Founder.swift in Sources */,
-				3FDEC9631D9351B100E82C48 /* Helper.swift in Sources */,
+				3FF253611D94E9F000B50FF3 /* CircleImageView.swift in Sources */,
+				3FF253651D95865D00B50FF3 /* ProfileCell.swift in Sources */,
+				3FDEC9631D9351B100E82C48 /* Helpers.swift in Sources */,
+				3FF253631D95865500B50FF3 /* InfoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

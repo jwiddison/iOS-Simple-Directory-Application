@@ -36,29 +36,30 @@ class EditProfileViewController : UITableViewController, UIImagePickerController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         updateUI()
+        navigationController?.resetBarTransparency()
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        Helper.applyRoundBorder(to: imageView)
+        imageView.applyCircleMask()
     }
-    
+
     // MARK: - Helpers
     
     private func updateUI() {
         if let founder = self.founder {
-            imageView.image = UIImage(named: founder.photoName)
-            nameText.text = founder.name
-            companyText.text = founder.company
+            imageView.image = UIImage(named: founder.imageUrl)
+            nameText.text = founder.preferredFullName
+            companyText.text = founder.organizationName
             emailText.text = founder.email
-            phoneText.text = founder.phone
-            spouseText.text = founder.spouseName
-            emailPrivateSwitch.isOn = !founder.emailListed
-            phonePrivateSwitch.isOn = !founder.phoneListed
-            profileText.text = founder.profile
+            phoneText.text = founder.cell
+            spouseText.text = founder.spousePreferredFullName
+            emailPrivateSwitch.isOn = !founder.isEmailListed
+            phonePrivateSwitch.isOn = !founder.isPhoneListed
+            profileText.text = founder.biography
         }
     }
 
