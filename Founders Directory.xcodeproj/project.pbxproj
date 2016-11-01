@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3F2534011D937CF200530F0E /* FounderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2534001D937CF200530F0E /* FounderCell.swift */; };
-		3F3FEED21DC8D6C300436C69 /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3FEED11DC8D6C300436C69 /* SyncService.swift */; };
+		3F3FEED21DC8D6C300436C69 /* SyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3FEED11DC8D6C300436C69 /* SyncHelper.swift */; };
+		3F6295C91DC8DEC600E365AC /* FounderDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6295C81DC8DEC600E365AC /* FounderDatabase.swift */; };
 		3F63E25D1DA31C8900D2B175 /* CircleTagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F63E25C1DA31C8900D2B175 /* CircleTagButton.swift */; };
 		3FDEC9631D9351B100E82C48 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDEC9621D9351B100E82C48 /* Helpers.swift */; };
 		3FED10931D9C091900C84541 /* ProfileViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FED10921D9C091900C84541 /* ProfileViewControllerDataSource.swift */; };
@@ -30,7 +31,8 @@
 		1D2AB372FB55CFA44EB1B015 /* Pods-Founders Directory.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Founders Directory.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Founders Directory/Pods-Founders Directory.debug.xcconfig"; sourceTree = "<group>"; };
 		2AE0AE171EC9D7B454084317 /* Pods_Founders_Directory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Founders_Directory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F2534001D937CF200530F0E /* FounderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FounderCell.swift; sourceTree = "<group>"; };
-		3F3FEED11DC8D6C300436C69 /* SyncService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncService.swift; sourceTree = "<group>"; };
+		3F3FEED11DC8D6C300436C69 /* SyncHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncHelper.swift; sourceTree = "<group>"; };
+		3F6295C81DC8DEC600E365AC /* FounderDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FounderDatabase.swift; sourceTree = "<group>"; };
 		3F63E25C1DA31C8900D2B175 /* CircleTagButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleTagButton.swift; sourceTree = "<group>"; };
 		3FDEC9621D9351B100E82C48 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		3FED10921D9C091900C84541 /* ProfileViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerDataSource.swift; sourceTree = "<group>"; };
@@ -74,7 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				3FDEC9621D9351B100E82C48 /* Helpers.swift */,
-				3F3FEED11DC8D6C300436C69 /* SyncService.swift */,
+				3F3FEED11DC8D6C300436C69 /* SyncHelper.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				3FF52E071D931DCF00C665EE /* Founder.swift */,
+				3F6295C81DC8DEC600E365AC /* FounderDatabase.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -191,7 +194,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Steve Liddle";
 				TargetAttributes = {
 					3FF52DEB1D931AA700C665EE = {
@@ -289,7 +292,8 @@
 				3FF52DF01D931AA700C665EE /* AppDelegate.swift in Sources */,
 				3F63E25D1DA31C8900D2B175 /* CircleTagButton.swift in Sources */,
 				3FED10931D9C091900C84541 /* ProfileViewControllerDataSource.swift in Sources */,
-				3F3FEED21DC8D6C300436C69 /* SyncService.swift in Sources */,
+				3F6295C91DC8DEC600E365AC /* FounderDatabase.swift in Sources */,
+				3F3FEED21DC8D6C300436C69 /* SyncHelper.swift in Sources */,
 				3FF52E0A1D932A4D00C665EE /* ProfileViewController.swift in Sources */,
 				3FF52E0C1D93467200C665EE /* EditProfileViewController.swift in Sources */,
 				3F2534011D937CF200530F0E /* FounderCell.swift in Sources */,
@@ -341,6 +345,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -391,6 +396,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -420,6 +426,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1D2AB372FB55CFA44EB1B015 /* Pods-Founders Directory.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = KFPSLPBU25;
 				INFOPLIST_FILE = "Founders Directory/Info.plist";
@@ -434,6 +441,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E251C96F74EFDD4B9B0C0020 /* Pods-Founders Directory.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = KFPSLPBU25;
 				INFOPLIST_FILE = "Founders Directory/Info.plist";

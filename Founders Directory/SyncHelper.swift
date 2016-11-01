@@ -1,5 +1,5 @@
 //
-//  SyncService.swift
+//  SyncHelper.swift
 //  Founders Directory
 //
 //  Created by Steve Liddle on 11/1/16.
@@ -8,13 +8,13 @@
 
 import Foundation
 
-class SyncService {
+class SyncHelper {
     var lastSyncTime: Date?
 
     func synchronizeFounders() -> Bool {
         lastSyncTime = Date()
     
-        let maxVersion = maxFounderVersion()
+        let maxVersion = FounderDatabase.shared.maxFounderVersion()
         var serverMaxVersion = 0
 
         // Note: In the production version, we won't let users delete
@@ -26,10 +26,6 @@ class SyncService {
     }
 
     // MARK: - Helpers
-
-    func maxFounderVersion() -> Int {
-        return 0
-    }
 
     func syncDeletedFounders(_ serverMaxVersion: Int) -> Int {
         /*
