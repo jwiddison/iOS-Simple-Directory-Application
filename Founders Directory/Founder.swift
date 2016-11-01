@@ -15,6 +15,19 @@ class Address {
     var state = ""
     var zip = ""
     var country = ""
+
+    init() {
+        // Default initializer
+    }
+
+    init(copy address: Address) {
+        self.address1 = address.address1
+        self.address2 = address.address2
+        self.city = address.city
+        self.state = address.state
+        self.zip = address.zip
+        self.country = address.country
+    }
 }
 
 class Founder {
@@ -58,5 +71,38 @@ class Founder {
         imageUrl = photoName
         spousePreferredFullName = spouseName
         biography = profile
+    }
+    
+    init(founder: Founder) {
+        givenNames = founder.givenNames
+        surnames = founder.surnames
+        preferredFirstName = founder.preferredFirstName
+        preferredFullName = founder.preferredFullName
+        cell = founder.cell
+        email = founder.email
+        website = founder.website
+        linkedIn = founder.linkedIn
+        biography = founder.biography
+        expertise = founder.expertise
+        spouseGivenNames = founder.spouseGivenNames
+        spouseSurnames = founder.spouseSurnames
+        spousePreferredFirstName = founder.spousePreferredFirstName
+        spousePreferredFullName = founder.spousePreferredFullName
+        spouseCell = founder.spouseCell
+        status = founder.status
+        yearJoined = founder.yearJoined
+        homeAddress = Address(copy: founder.homeAddress)
+        organizationName = founder.organizationName
+        jobTitle = founder.jobTitle
+        workAddress = Address(copy: founder.workAddress)
+        mailingSameAs = founder.mailingSameAs
+        imageUrl = founder.imageUrl
+        spouseImageUrl = founder.spouseImageUrl
+        version = founder.version
+        deleted = founder.deleted
+        dirty = founder.dirty
+        new = founder.new
+        isPhoneListed = founder.isPhoneListed
+        isEmailListed = founder.isEmailListed
     }
 }

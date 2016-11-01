@@ -49,12 +49,9 @@ class ProfileViewController : UIViewController {
     @IBOutlet weak var imageOffsetConstraint: NSLayoutConstraint!
     @IBOutlet weak var subtitleHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var callButton: CircleImageButton!
-    @IBOutlet weak var callButtonLabel: UILabel!
-    @IBOutlet weak var emailButton: CircleImageButton!
-    @IBOutlet weak var emailButtonLabel: UILabel!
-    @IBOutlet weak var textButton: CircleImageButton!
-    @IBOutlet weak var textButtonLabel: UILabel!
+    @IBOutlet weak var callButton: CircleTagButton!
+    @IBOutlet weak var emailButton: CircleTagButton!
+    @IBOutlet weak var textButton: CircleTagButton!
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -94,8 +91,10 @@ class ProfileViewController : UIViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destVC = segue.destination as? EditProfileViewController {
-            destVC.founder = founder
+        if let navVC = segue.destination as? UINavigationController {
+            if let destVC = navVC.viewControllers.first as? EditProfileViewController {
+                destVC.founder = founder
+            }
         }
     }
 
@@ -107,15 +106,15 @@ class ProfileViewController : UIViewController {
 
         var subtitleText = ""
 
-        if founder.preferredFirstName.characters.count > 0 {
+        if founder.preferredFirstName.length > 0 {
             subtitleText = "“\(founder.preferredFirstName)”"
         } else {
             maxHeaderHeight -= Size.SubtitleLineHeight
             maxSubtitleHeight -= Size.SubtitleLineHeight
         }
 
-        if founder.organizationName.characters.count > 0 {
-            if subtitleText.characters.count > 0 {
+        if founder.organizationName.length > 0 {
+            if subtitleText.length > 0 {
                 subtitleText += "\n"
             }
 
@@ -127,9 +126,9 @@ class ProfileViewController : UIViewController {
 
         subtitleLabel.text = subtitleText
 
-        callButton.setEnabledState(founder.isPhoneListed, including: callButtonLabel)
-        textButton.setEnabledState(founder.isPhoneListed, including: textButtonLabel)
-        emailButton.setEnabledState(founder.isEmailListed, including: emailButtonLabel)
+        callButton.disabled = !founder.isPhoneListed
+        textButton.disabled = !founder.isPhoneListed
+        emailButton.disabled = !founder.isEmailListed
 
         if founder.email != "chewie@gmail.com" {
             navigationItem.rightBarButtonItem = nil
@@ -138,77 +137,36 @@ class ProfileViewController : UIViewController {
 
     // MARK: - Actions
 
-    @IBAction func callPhone(_ sender: UIButton) {
-        if founder.isPhoneListed && founder.cell.characters.count > 0 {
+    @IBAction func callPhone(_ sender: CircleTagButton) {
+        if founder.isPhoneListed && founder.cell.length > 0 {
             if let url = URL(string: "tel://\(founder.cell)") {
                 UIApplication.shared.open(url)
             }
         }
     }
 
-    @IBAction func sendEmail(_ sender: UIButton) {
-        if founder.isEmailListed && founder.email.characters.count > 0 {
+    @IBAction func sendEmail(_ sender: CircleTagButton) {
+        if founder.isEmailListed && founder.email.length > 0 {
             if let url = URL(string: "mailto://\(founder.email)") {
                 UIApplication.shared.open(url)
             }
         }
     }
 
-    @IBAction func sendText(_ sender: UIButton) {
-        if founder.isPhoneListed && founder.cell.characters.count > 0 {
+    @IBAction func sendText(_ sender: CircleTagButton) {
+        if founder.isPhoneListed && founder.cell.length > 0 {
             if let url = URL(string: "sms://\(founder.cell)") {
                 UIApplication.shared.open(url)
             }
         }
     }
-}
-
-// MARK: - Table view data source
-
-extension ProfileViewController : UITableViewDataSource {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row <= 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.InfoCellIdentifier, for: indexPath)
-
-            if let infoCell = cell as? InfoCell {
-                infoCell.emailLabel.text = founder.isEmailListed ? founder.email : ""
-                infoCell.phoneLabel.text = founder.isPhoneListed ? founder.cell : ""
-
-                if founder.spousePreferredFullName == "" {
-                    infoCell.spouseNameIndicatorLabel.isHidden = true
-                    infoCell.spouseNameLabel.isHidden = true
-                } else {
-                    infoCell.spouseNameIndicatorLabel.isHidden = false
-                    infoCell.spouseNameLabel.isHidden = false
-                    infoCell.spouseNameLabel.text = founder.spousePreferredFullName
-                }
-            }
-
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.ProfileCellIdentifier, for: indexPath)
-
-            if let profileCell = cell as? ProfileCell {
-                profileCell.biographyLabel.text = founder.biography.characters.count > 0 ?
-                    founder.biography :
-                    "This is not the Founder you're looking for.  You can go about your business.  Move along... move along."
-            }
-
-            return cell
-        }
+    
+    @IBAction func cancelEdit(segue: UIStoryboardSegue) {
+        // Ignore
     }
 
-    @objc(tableView:heightForRowAtIndexPath:)
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row <= 0 {
-            return Size.InfoCellHeight
-        } else {
-            return Size.ProfileCellHeight
-        }
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+    @IBAction func saveEdit(segue: UIStoryboardSegue) {
+        // NEEDSWORK: reload the edited Founder record
     }
 }
 
@@ -292,7 +250,7 @@ extension ProfileViewController : UITableViewDelegate {
         let percentage = openAmount / range
 
         imageHeightConstraint.constant = Size.MinImageHeight + percentage * (Size.MaxImageHeight - Size.MinImageHeight)
-        imageOffsetConstraint.constant = Size.MinImageOffset + percentage * (Size.MaxImageOffset - Size.MinImageOffset)
+//        imageOffsetConstraint.constant = Size.MinImageOffset + percentage * (Size.MaxImageOffset - Size.MinImageOffset)
         subtitleHeightConstraint.constant = minSubtitleHeight + percentage * (maxSubtitleHeight - minSubtitleHeight)
 
         nameLabel.font = UIFont(name: ".SFUIDisplay", size: Size.MaxFontSize - percentage * (Size.MaxFontSize - Size.MinFontSize))!

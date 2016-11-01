@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		3F2534011D937CF200530F0E /* FounderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2534001D937CF200530F0E /* FounderCell.swift */; };
+		3F3FEED21DC8D6C300436C69 /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3FEED11DC8D6C300436C69 /* SyncService.swift */; };
+		3F63E25D1DA31C8900D2B175 /* CircleTagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F63E25C1DA31C8900D2B175 /* CircleTagButton.swift */; };
 		3FDEC9631D9351B100E82C48 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDEC9621D9351B100E82C48 /* Helpers.swift */; };
-		3FF2535D1D94A60300B50FF3 /* CircleImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF2535C1D94A60300B50FF3 /* CircleImageButton.swift */; };
+		3FED10931D9C091900C84541 /* ProfileViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FED10921D9C091900C84541 /* ProfileViewControllerDataSource.swift */; };
 		3FF253611D94E9F000B50FF3 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF253601D94E9F000B50FF3 /* CircleImageView.swift */; };
 		3FF253631D95865500B50FF3 /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF253621D95865500B50FF3 /* InfoCell.swift */; };
 		3FF253651D95865D00B50FF3 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF253641D95865D00B50FF3 /* ProfileCell.swift */; };
@@ -21,12 +23,17 @@
 		3FF52E081D931DCF00C665EE /* Founder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF52E071D931DCF00C665EE /* Founder.swift */; };
 		3FF52E0A1D932A4D00C665EE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF52E091D932A4D00C665EE /* ProfileViewController.swift */; };
 		3FF52E0C1D93467200C665EE /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF52E0B1D93467200C665EE /* EditProfileViewController.swift */; };
+		98A3623CFE5D3ADD1355735B /* Pods_Founders_Directory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE0AE171EC9D7B454084317 /* Pods_Founders_Directory.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D2AB372FB55CFA44EB1B015 /* Pods-Founders Directory.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Founders Directory.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Founders Directory/Pods-Founders Directory.debug.xcconfig"; sourceTree = "<group>"; };
+		2AE0AE171EC9D7B454084317 /* Pods_Founders_Directory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Founders_Directory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F2534001D937CF200530F0E /* FounderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FounderCell.swift; sourceTree = "<group>"; };
+		3F3FEED11DC8D6C300436C69 /* SyncService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncService.swift; sourceTree = "<group>"; };
+		3F63E25C1DA31C8900D2B175 /* CircleTagButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleTagButton.swift; sourceTree = "<group>"; };
 		3FDEC9621D9351B100E82C48 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		3FF2535C1D94A60300B50FF3 /* CircleImageButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageButton.swift; sourceTree = "<group>"; };
+		3FED10921D9C091900C84541 /* ProfileViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerDataSource.swift; sourceTree = "<group>"; };
 		3FF253601D94E9F000B50FF3 /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		3FF253621D95865500B50FF3 /* InfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		3FF253641D95865D00B50FF3 /* ProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
@@ -40,6 +47,7 @@
 		3FF52E071D931DCF00C665EE /* Founder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Founder.swift; sourceTree = "<group>"; };
 		3FF52E091D932A4D00C665EE /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3FF52E0B1D93467200C665EE /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		E251C96F74EFDD4B9B0C0020 /* Pods-Founders Directory.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Founders Directory.release.xcconfig"; path = "Pods/Target Support Files/Pods-Founders Directory/Pods-Founders Directory.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,16 +55,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98A3623CFE5D3ADD1355735B /* Pods_Founders_Directory.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E5F50095D69A88C3F3B4AE0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2AE0AE171EC9D7B454084317 /* Pods_Founders_Directory.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3FF253661D95CD4600B50FF3 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				3FDEC9621D9351B100E82C48 /* Helpers.swift */,
+				3F3FEED11DC8D6C300436C69 /* SyncService.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -66,6 +84,8 @@
 			children = (
 				3FF52DEE1D931AA700C665EE /* Founders Directory */,
 				3FF52DED1D931AA700C665EE /* Products */,
+				BDB0DDC7C9E25597D846F80A /* Pods */,
+				0E5F50095D69A88C3F3B4AE0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,6 +116,7 @@
 				3FF52E0B1D93467200C665EE /* EditProfileViewController.swift */,
 				3FF52E051D931B2000C665EE /* FoundersViewController.swift */,
 				3FF52E091D932A4D00C665EE /* ProfileViewController.swift */,
+				3FED10921D9C091900C84541 /* ProfileViewControllerDataSource.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -107,8 +128,8 @@
 				3F2534001D937CF200530F0E /* FounderCell.swift */,
 				3FF253621D95865500B50FF3 /* InfoCell.swift */,
 				3FF253641D95865D00B50FF3 /* ProfileCell.swift */,
-				3FF2535C1D94A60300B50FF3 /* CircleImageButton.swift */,
 				3FF253601D94E9F000B50FF3 /* CircleImageView.swift */,
+				3F63E25C1DA31C8900D2B175 /* CircleTagButton.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -131,6 +152,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		BDB0DDC7C9E25597D846F80A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1D2AB372FB55CFA44EB1B015 /* Pods-Founders Directory.debug.xcconfig */,
+				E251C96F74EFDD4B9B0C0020 /* Pods-Founders Directory.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,9 +168,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3FF52DFE1D931AA700C665EE /* Build configuration list for PBXNativeTarget "Founders Directory" */;
 			buildPhases = (
+				CCFC7C3BDF3A5AE0E820B6D1 /* [CP] Check Pods Manifest.lock */,
 				3FF52DE81D931AA700C665EE /* Sources */,
 				3FF52DE91D931AA700C665EE /* Frameworks */,
 				3FF52DEA1D931AA700C665EE /* Resources */,
+				FFEEB3B82607F8A54F56DD1E /* [CP] Embed Pods Frameworks */,
+				8F8A0924E5421CB52B09E935 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -199,6 +232,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8F8A0924E5421CB52B09E935 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Founders Directory/Pods-Founders Directory-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CCFC7C3BDF3A5AE0E820B6D1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FFEEB3B82607F8A54F56DD1E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Founders Directory/Pods-Founders Directory-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3FF52DE81D931AA700C665EE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -206,7 +287,9 @@
 			files = (
 				3FF52E061D931B2000C665EE /* FoundersViewController.swift in Sources */,
 				3FF52DF01D931AA700C665EE /* AppDelegate.swift in Sources */,
-				3FF2535D1D94A60300B50FF3 /* CircleImageButton.swift in Sources */,
+				3F63E25D1DA31C8900D2B175 /* CircleTagButton.swift in Sources */,
+				3FED10931D9C091900C84541 /* ProfileViewControllerDataSource.swift in Sources */,
+				3F3FEED21DC8D6C300436C69 /* SyncService.swift in Sources */,
 				3FF52E0A1D932A4D00C665EE /* ProfileViewController.swift in Sources */,
 				3FF52E0C1D93467200C665EE /* EditProfileViewController.swift in Sources */,
 				3F2534011D937CF200530F0E /* FounderCell.swift in Sources */,
@@ -335,6 +418,7 @@
 		};
 		3FF52DFF1D931AA700C665EE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D2AB372FB55CFA44EB1B015 /* Pods-Founders Directory.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = KFPSLPBU25;
@@ -348,6 +432,7 @@
 		};
 		3FF52E001D931AA700C665EE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E251C96F74EFDD4B9B0C0020 /* Pods-Founders Directory.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = KFPSLPBU25;
