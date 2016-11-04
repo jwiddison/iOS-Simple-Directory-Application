@@ -49,6 +49,7 @@ class EditProfileViewController : UITableViewController, UIImagePickerController
 
     // MARK: - Helpers
     
+    @objc
     private func updateUI() {
         if let founder = self.founder {
             imageView.image = UIImage(named: founder.imageUrl)

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GRDB
 
 class FoundersViewController : UITableViewController {
     
@@ -18,28 +19,67 @@ class FoundersViewController : UITableViewController {
         static let ViewSegueIdentifier = "ViewProfile"
     }
 
+    private struct Request {
+        static let foundersByName = Founder.order(Column(Founder.Field.preferredFullName))
+    }
+
     // MARK: - Properties
 
-    var founders = FounderDatabase.shared.founders()
+    var foundersController: FetchedRecordsController<Founder>!
+
+    // MARK: - View controller lifecycle
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        foundersController = FetchedRecordsController(FounderDatabase.shared.dbQueue,
+                                                      request: Request.foundersByName,
+                                                      compareRecordsByPrimaryKey: true)
+        foundersController.trackChanges(
+            recordsWillChange: { [unowned self] _ in
+                self.tableView.beginUpdates()
+            },
+            tableViewEvent: { [unowned self] (controller, record, event) in
+                switch event {
+                case .insertion(let indexPath):
+                    self.tableView.insertRows(at: [indexPath], with: .fade)
+                    
+                case .deletion(let indexPath):
+                    self.tableView.deleteRows(at: [indexPath], with: .fade)
+                    
+                case .update(let indexPath, _):
+                    if let cell = self.tableView.cellForRow(at: indexPath) {
+                        self.configure(cell, at: indexPath)
+                    }
+
+                case .move(let indexPath, let newIndexPath, _):
+                    let cell = self.tableView.cellForRow(at: indexPath)
+                    self.tableView.moveRow(at: indexPath, to: newIndexPath)
+
+                    if let cell = cell {
+                        self.configure(cell, at: newIndexPath)
+                    }
+                }
+            },
+            recordsDidChange: { [unowned self] _ in
+                self.tableView.endUpdates()
+        })
+
+        foundersController.performFetch()
+    }
 
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        founders[0].preferredFirstName = "Chewie"
-        founders[1].isPhoneListed = false
-        
         if let destVC = segue.destination as? ProfileViewController {
-            if let indexPath = sender as? IndexPath {
-                destVC.founder = founders[indexPath.row]
-            }
+            destVC.founder = foundersController.record(at: tableView.indexPathForSelectedRow!)
         }
     }
 
     // MARK: - Table view data source
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.CellIdentifier, for: indexPath)
-        let founder = founders[indexPath.row]
+    func configure(_ cell: UITableViewCell, at indexPath: IndexPath) {
+        let founder = foundersController.record(at: indexPath)
 
         if let founderCell = cell as? FounderCell {
             founderCell.founderNameLabel?.text = founder.preferredFullName
@@ -54,14 +94,24 @@ class FoundersViewController : UITableViewController {
                 imageView.layer.masksToBounds = true
             }
         }
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.CellIdentifier, for: indexPath)
+
+        configure(cell, at: indexPath)
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return founders.count
+        return foundersController.sections[section].numberOfRecords
     }
-    
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return foundersController.sections.count
+    }
+
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
