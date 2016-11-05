@@ -6,7 +6,7 @@
 //  Copyright © 2016 Steve Liddle. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import GRDB
 
 typealias JSONObject = [String : Any?]
@@ -19,17 +19,25 @@ class SyncHelper {
     private struct Command {
         static let add = "addfounder"
         static let delete = "deletefounder"
-        static let getupdates = "getupdatessince"
+        static let getPhoto = "photo"
+        static let getUpdates = "getupdatessince"
         static let update = "updatefounder"
+        static let uploadPhoto = "uploadphoto"
     }
 
     private struct Constants {
         static let baseSyncUrl = "https://scriptures.byu.edu/founders/v4/"
         static let failureCode = "0"
+        static let photoFounder = "founder"
+        static let photoSpouse = "spouse"
+        static let resultKey = "result"
         static let sessionTokenKey = "sessionKey"
+        static let successResult = "success"
     }
     
     private struct Parameter {
+        static let photoField = "u"
+        static let photoType = "f"
         static let id = "i"
         static let maxVersion = "x"
         static let sessionToken = "k"
@@ -44,14 +52,13 @@ class SyncHelper {
     // MARK: - Singleton
     
     static let shared = SyncHelper()
-    
+
     fileprivate init() {
         loadSessionFromPreferences()
     }
-    
 
     // MARK: - Public API
-    
+
     func synchronizeFounders() -> Bool {
         lastSyncTime = Date()
     
@@ -84,27 +91,33 @@ class SyncHelper {
     // Download and save locally a photo for a Founder or spouse.
     //
     private func downloadPhoto(id: Int, isSpouse: Bool) {
-//        PhotoManager photoManager = PhotoManager.getSharedPhotoManager(getApplicationContext());
-//        String photoUrl = SYNC_SERVER_URL + "photo.php?k=" + mSessionToken + "&i=" + id;
-//        Bitmap photoBitmap;
-//        
-//        photoUrl += "&f=" + (isSpouse ? "spouse" : "founder");
-//        photoBitmap = HttpHelper.getBitmap(photoUrl);
-//        
-//        if (photoBitmap != null) {
-//            if (isSpouse) {
-//                photoManager.saveSpousePhotoForFounderId(id, photoBitmap);
-//            } else {
-//                photoManager.savePhotoForFounderId(id, photoBitmap);
-//            }
-//        }
+        guard let token = sessionToken else {
+            return
+        }
+
+        let photoType = isSpouse ? Constants.photoSpouse : Constants.photoFounder
+        let url = syncUrl(forCommand: Command.getPhoto,
+                          withArguments: [Parameter.sessionToken : token,
+                                          Parameter.id : "\(id)",
+                                          Parameter.photoType : photoType])
+        HttpHelper.shared.getContent(urlString: url) { (data) in
+            if let imageData = data, let photoImage = UIImage(data: imageData) {
+                if isSpouse {
+                    PhotoManager.shared.saveSpousePhotoFor(founderId: id, photo: photoImage)
+                } else {
+                    PhotoManager.shared.savePhotoFor(founderId: id, photo: photoImage)
+                }
+            }
+        }
     }
     
     //
     // Download the Founder and/or spouse photo(s) for this Founder record.
     //
-    private func downloadPhotos(values: [String : String]) {
-        if let idString = values[Founder.Field.id], let id = Int(idString) {
+    private func downloadPhotos(values: JSONObject) {
+        if let idValue = values[Founder.Field.id] as? NSNumber {
+            let id = Int(idValue)
+
             downloadPhoto(id: id, isSpouse: false)
             downloadPhoto(id: id, isSpouse: true)
         }
@@ -112,6 +125,7 @@ class SyncHelper {
 
     private func loadSessionFromPreferences() {
         sessionToken = UserDefaults.standard.string(forKey: Constants.sessionTokenKey)
+        // NEEDSWORK: log in; don't hard-code the session ID
         sessionToken = "41471165af5bb678bf58467811505450"
     }
 
@@ -258,7 +272,7 @@ class SyncHelper {
         let arguments = [Parameter.sessionToken : token,
                          Parameter.version : "\(maxVersion)",
                          Parameter.maxVersion : "\(serverMaxVersion)"]
-        let url = syncUrl(forCommand: Command.getupdates, withArguments: arguments)
+        let url = syncUrl(forCommand: Command.getUpdates, withArguments: arguments)
 
         HttpHelper.shared.getContent(urlString: url) { (data) in
             if let founders = try? JSONSerialization.jsonObject(with: data!,
@@ -273,6 +287,7 @@ class SyncHelper {
 
                         if let deletedValue = founderObject[Founder.Field.deleted] as? String {
                             if deletedValue == Founder.Flag.deleted {
+                                // Attempt to delete
                                 FounderDatabase.shared.delete(id)
                                 continue
                             }
@@ -280,14 +295,15 @@ class SyncHelper {
 
                         // Attempt to update
                         if founder.id > 0 {
-                            // NEEDSWORK: copy non-ID values into founder object
+                            founder.update(from: founderObject)
                             FounderDatabase.shared.update(founder)
                             continue
                         }
 
+                        // If we fall through to here, attempt to create
                         FounderDatabase.shared.insert(founder, from: founderObject)
 
-//                        downloadPhotos(founder)
+                        downloadPhotos(values: founderObject)
                     }
                 }
             }
@@ -296,8 +312,12 @@ class SyncHelper {
         return changesMade
     }
 
+    private func syncUrl(forCommand command: String) -> String {
+        return "\(Constants.baseSyncUrl)\(command).php"
+    }
+    
     private func syncUrl(forCommand command: String, withArguments arguments: [String : String]) -> String {
-        var url = "\(Constants.baseSyncUrl)\(command).php"
+        var url = syncUrl(forCommand: command)
 
         if arguments.count > 0 {
             var first = true
@@ -317,8 +337,47 @@ class SyncHelper {
         return url
     }
     
+    //
+    // Upload a photo for a founder or spouse.  Returns true if successful.
+    //
     private func uploadPhoto(id: Int, founder: Founder, isSpouse: Bool) -> Bool {
-        // NEEDSWORK: implement it
+        guard let token = sessionToken else {
+            return false
+        }
+
+        var photo: UIImage?
+
+        if (isSpouse) {
+            photo = PhotoManager.shared.getSpousePhotoFor(founderId: id)
+        } else {
+            photo = PhotoManager.shared.getPhotoFor(founderId: id)
+        }
+        
+        if let photoImage = photo {
+            let uploadUrl = syncUrl(forCommand: Command.uploadPhoto)
+            let photoType = isSpouse ? Constants.photoSpouse : Constants.photoFounder
+            let photoField = isSpouse ? Founder.Field.spouseImageUrl : Founder.Field.imageUrl
+            let photoParameters = [Parameter.sessionToken : token,
+                                   Parameter.id : "\(id)",
+                                   Parameter.photoType : photoType,
+                                   Parameter.photoField : photoField]
+            var success = false
+
+            HttpHelper.shared.postMultipartContent(urlString: uploadUrl,
+                                                   parameters: photoParameters,
+                                                   image: photoImage) { (data) in
+                if let resultObject = try? JSONSerialization.jsonObject(with: data!,
+                                                        options: .allowFragments) as! JSONObject {
+                    if let resultCode = resultObject[Constants.resultKey] as? String {
+                        success = resultCode == Constants.successResult
+                    }
+                }
+            }
+
+            return success
+        }
+
+        // There was no photo to upload, so it wasn't a failure.
         return true
     }
 }

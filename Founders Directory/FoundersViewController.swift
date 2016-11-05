@@ -68,6 +68,12 @@ class FoundersViewController : UITableViewController {
         foundersController.performFetch()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.resetBarTransparency()
+    }
+
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -89,7 +95,16 @@ class FoundersViewController : UITableViewController {
                 // Note that when we use one of the default tableview cell types, we get the
                 // imageview property for free.  Here we load it from one of the pre-loaded
                 // image assets and then make it circular by setting the corner radius.
-                imageView.image = UIImage(named: founder.imageUrl)
+                imageView.image = UIImage(named: "defaultPhoto-60")
+
+                DispatchQueue.global().async {
+                    if let photoImage = PhotoManager.shared.getPhotoFor(founderId: founder.id) {
+                        DispatchQueue.main.async {
+                            imageView.image = photoImage
+                        }
+                    }
+                }
+
                 imageView.layer.cornerRadius = Storyboard.CornerRadius
                 imageView.layer.masksToBounds = true
             }

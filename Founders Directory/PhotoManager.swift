@@ -6,114 +6,84 @@
 //  Copyright © 2016 Steve Liddle. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class PhotoManager {
 
+    // MARK: - Properties
+
+    lazy var fileManager = FileManager()
+    
     // MARK: - Singleton
 
     static let shared = PhotoManager()
 
     fileprivate init() { }
 
-/*
-    // Return the bitmap for a photo corresponding to a given filename.
-    public Bitmap getPhoto(String filename) {
-    File photoFile = fileForExistingPhotoUrl(filename);
+    func getPhoto(filename: String) -> UIImage? {
+        if let photoUrl = urlForExistingPhoto(filename) {
+            if let imageData = try? Data(contentsOf: photoUrl) {
+                return UIImage(data: imageData)
+            }
+        }
 
-    if (photoFile != null) {
-    BitmapFactory.Options options = new BitmapFactory.Options();
-
-    options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-    
-    return BitmapFactory.decodeFile(photoFile.getAbsolutePath(), options);
-    }
-    
-    return null;
-    }
-    
-    // Get a photo for a given Founder record ID.
-    public Bitmap getPhotoForFounderId(int id) {
-    return getPhoto("founder" + id);
-    }
-    
-    // Get a spouse photo for a given Founder record ID.
-    public Bitmap getSpousePhotoForFounderId(int id) {
-    return getPhoto("spouse" + id);
+        return nil
     }
 
-    // Save a photo for a given Founder record ID.
-    public void savePhotoForFounderId(int id, Bitmap photo) {
-    savePhoto("founder" + id, photo);
+    func getPhotoFor(founderId: Int) -> UIImage? {
+        return getPhoto(filename: "founder\(founderId)")
+    }
+
+    func getSpousePhotoFor(founderId: Int) -> UIImage? {
+        return getPhoto(filename: "spouse\(founderId)")
+    }
+
+    func savePhotoFor(founderId: Int, photo: UIImage) {
+        savePhoto(filename: "founder\(founderId)", with: photo)
     }
     
-    // Save a spouse photo for a given Founder record ID.
-    public void saveSpousePhotoForFounderId(int id, Bitmap photo) {
-    savePhoto("spouse" + id, photo);
+    func saveSpousePhotoFor(founderId: Int, photo: UIImage) {
+        savePhoto(filename: "spouse\(founderId)", with: photo)
     }
-    
-    // Get the full URL string for a given image filename.
-    public String urlForFileName(String imageFileName) {
-    File photoFile = fileForExistingPhotoUrl(imageFileName);
-    
-    if (photoFile != null) {
-    return photoFile.getAbsolutePath();
+
+    func urlForFileName(_ filename: String) -> String? {
+        if let photoUrl = urlForExistingPhoto(filename) {
+            return photoUrl.absoluteString
+        }
+
+        return nil
     }
-    
-    return null;
+
+    func urlForExistingPhoto(_ filename: String) -> URL? {
+        for cacheDir in fileManager.urls(for: .cachesDirectory, in: .userDomainMask) {
+            let photoUrl = cacheDir.appendingPathComponent(filename)
+
+            if fileManager.fileExists(atPath: photoUrl.path) {
+                return photoUrl
+            } else {
+                print("File \(photoUrl.absoluteString) does not exist")
+            }
+        }
+
+        return nil
     }
-    
-    // Retrieve a File corresponding
-    private File fileForExistingPhotoUrl(String url) {
-    File[] cacheDirs = ContextCompat.getExternalCacheDirs(mContext);
-    
-    for (File dir : cacheDirs) {
-    if (dir != null) {
-    File photoFile = new File(dir.getAbsolutePath() + File.separator + url);
-    
-    if (photoFile.exists()) {
-    return photoFile;
+
+    func urlForNewPhoto(_ filename: String) -> URL {
+        if let cacheDir = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first {
+            return cacheDir.appendingPathComponent(filename)
+        }
+
+        return URL(string: "founder1")!
     }
+
+    func savePhoto(filename: String, with photoImage: UIImage) {
+        let photoUrl = urlForNewPhoto(filename)
+        let imageData = UIImageJPEGRepresentation(photoImage, 1.0)
+
+        if fileManager.fileExists(atPath: photoUrl.absoluteString) {
+            try? fileManager.removeItem(at: photoUrl)
+        }
+
+        try? imageData?.write(to: photoUrl, options: .atomic)
     }
-    }
-    
-    return null;
-    }
-    
-    private File fileForNewPhotoUrl(String url) {
-    File cacheDir = ContextCompat.getExternalCacheDirs(mContext)[0];
-    
-    return new File(cacheDir.getAbsolutePath() + File.separator + url);
-    }
-    
-    private void savePhoto(String url, Bitmap photo) {
-    File photoFile = fileForNewPhotoUrl(url);
-    
-    if (photoFile != null) {
-    if (photoFile.exists()) {
-    photoFile.delete();
-    }
-    
-    Log.d(TAG, "savePhoto: " + url);
-    BitmapWorkerTask.clearImageFromCache(url);
-    
-    FileOutputStream out = null;
-    
-    try {
-    out = new FileOutputStream(photoFile);
-    photo.compress(Bitmap.CompressFormat.PNG, 100, out);
-    } catch (FileNotFoundException e) {
-    Log.d(TAG, "savePhoto unable to save: " + e);
-    } finally {
-    try {
-    if (out != null) {
-    out.close();
-    }
-    } catch (IOException e) {
-    Log.d(TAG, "savePhoto unable to close: " + e);
-    }
-    }
-    }
-    }
-*/
 }

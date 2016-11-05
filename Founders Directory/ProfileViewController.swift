@@ -101,7 +101,7 @@ class ProfileViewController : UIViewController {
     // MARK: - Helpers
 
     private func updateUI() {
-        imageView.image = UIImage(named: founder.imageUrl)
+        imageView.image = PhotoManager.shared.getPhotoFor(founderId: founder.id)
         nameLabel.text = founder.preferredFullName
 
         var subtitleText = ""

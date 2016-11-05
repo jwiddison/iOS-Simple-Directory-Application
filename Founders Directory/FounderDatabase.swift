@@ -170,6 +170,7 @@ class FounderDatabase {
 
     func insert(_ founder: Founder, from json: JSONObject) {
         founder.update(from: json)
+        founder.id = Int(json[Founder.Field.id] as! NSNumber)
 
         dbQueue.inDatabase { (db: Database) -> Void in
             try? founder.insert(db)

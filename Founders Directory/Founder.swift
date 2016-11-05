@@ -323,7 +323,6 @@ class Founder : Record {
     }
     
     func update(from json: JSONObject) {
-        id = Int(json[Field.id] as! NSNumber)
         givenNames = json[Field.givenNames] as! String
         surnames = json[Field.surnames] as! String
         preferredFirstName = json[Field.preferredFirstName] as! String
