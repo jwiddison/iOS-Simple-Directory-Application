@@ -25,13 +25,23 @@ class FounderDatabase {
     // MARK: - Singleton
 
     static let shared = FounderDatabase()
-    
+
+    private var databasePath: URL {
+        let fileManager = FileManager()
+
+        if let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
+            return documentDirectory.appendingPathComponent(Constant.fileName)
+                                    .appendingPathExtension(Constant.fileExtension)
+        }
+
+        return URL(string: "")!
+    }
+
     fileprivate init() {
-        dbQueue = try? DatabaseQueue(path: Bundle.main.path(forResource: Constant.fileName,
-                                                            ofType: Constant.fileExtension)!)
+        dbQueue = try? DatabaseQueue(path: databasePath.path)
 
         var migrator = DatabaseMigrator()
-        
+
         migrator.registerMigration("createFounders") { db in
             try db.create(table: Founder.databaseTableName) { t in
                 t.column(Founder.Field.id, .integer).primaryKey()
@@ -181,11 +191,11 @@ class FounderDatabase {
         return dbQueue.inDatabase { (db: Database) -> Int in
             if let row = Row.fetchOne(db,
                         "select MAX(\(Founder.Field.version)) as \(Founder.Field.version) " +
-                        "from \(Founder.databaseTableName) ") {
+                        "from \(Founder.databaseTableName)") {
                 let value = row.value(named: Founder.Field.version)
 
                 if value != nil {
-                    return value as! Int
+                    return Int(value as! NSNumber)
                 }
             }
 

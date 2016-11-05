@@ -60,8 +60,6 @@ class PhotoManager {
 
             if fileManager.fileExists(atPath: photoUrl.path) {
                 return photoUrl
-            } else {
-                print("File \(photoUrl.absoluteString) does not exist")
             }
         }
 
@@ -73,7 +71,7 @@ class PhotoManager {
             return cacheDir.appendingPathComponent(filename)
         }
 
-        return URL(string: "founder1")!
+        return URL(string: "defaultPhoto-60")!
     }
 
     func savePhoto(filename: String, with photoImage: UIImage) {
