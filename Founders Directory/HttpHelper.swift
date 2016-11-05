@@ -26,12 +26,71 @@ class HttpHelper : NSObject, URLSessionDelegate {
     var downloadTask: URLSessionDataTask!
 
     // MARK: - Singleton
-    
+
     static let shared = HttpHelper()
-    
+
     fileprivate override init() { }
 
     // MARK: - Public API
+
+    func getContent(urlString: String, completionHandler: (Data?) -> ()) {
+        if let url = URL(string: urlString) {
+            var resultData: Data?
+            let semaphore = DispatchSemaphore(value: 0)
+            let configuration = URLSessionConfiguration.default
+            let session = URLSession(configuration: configuration,
+                                     delegate: self,
+                                     delegateQueue: nil)
+
+            session.dataTask(with: url) { (data, response, error) in
+                if error == nil {
+                    resultData = data
+                }
+
+                semaphore.signal()
+            }.resume()
+
+            semaphore.wait()
+            completionHandler(resultData)
+        }
+    }
+
+    func getContent(urlString: String, failureCode: String, completionHandler: (String) -> ()) {
+        if let url = URL(string: urlString) {
+            var content = ""
+            let semaphore = DispatchSemaphore(value: 0)
+
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if error != nil || data == nil {
+                    content = failureCode
+                }
+
+                content = String(data: data!, encoding: String.Encoding.utf8) ?? failureCode
+                semaphore.signal()
+            }.resume()
+
+            semaphore.wait()
+            completionHandler(content)
+        }
+    }
+
+    func postContent(urlString: String, completionHandler: (Data?) -> ()) {
+        if let url = URL(string: urlString) {
+            var resultData: Data?
+            let semaphore = DispatchSemaphore(value: 0)
+
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if error == nil {
+                    resultData = data
+                }
+
+                semaphore.signal()
+            }.resume()
+
+            semaphore.wait()
+            completionHandler(resultData)
+        }
+    }
 
     func postMultipartContent(urlString: String,
                               parameters: [String : String],
@@ -79,72 +138,7 @@ class HttpHelper : NSObject, URLSessionDelegate {
         }
     }
 
-    func getContent(urlString: String, completionHandler: (Data?) -> ()) {
-        if let url = URL(string: urlString) {
-            var resultData: Data?
-            let semaphore = DispatchSemaphore(value: 0)
-            let configuration = URLSessionConfiguration.default
-            let session = URLSession(configuration: configuration,
-                                     delegate: self,
-                                     delegateQueue: nil)
-
-            session.dataTask(with: url) { (data, response, error) in
-                if error == nil {
-                    resultData = data
-                }
-                
-                semaphore.signal()
-            }.resume()
-            
-            semaphore.wait()
-            completionHandler(resultData)
-        }
-    }
-    
-    func getContent(urlString: String, failureCode: String, completionHandler: (String) -> ()) {
-        if let url = URL(string: urlString) {
-            var content = ""
-            let semaphore = DispatchSemaphore(value: 0)
-
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                if error != nil || data == nil {
-                    content = failureCode
-                }
-
-                content = String(data: data!, encoding: String.Encoding.utf8) ?? failureCode
-                semaphore.signal()
-            }.resume()
-
-            semaphore.wait()
-            completionHandler(content)
-        }
-    }
-
-    func postContent(urlString: String, completionHandler: (Data?) -> ()) {
-        if let url = URL(string: urlString) {
-            var resultData: Data?
-            let semaphore = DispatchSemaphore(value: 0)
-
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                if error == nil {
-                    resultData = data
-                }
-
-                semaphore.signal()
-            }.resume()
-
-            semaphore.wait()
-            completionHandler(resultData)
-        }
-    }
-
     // MARK: - Session delegate
-
-    private func addFormField(payload: NSMutableString, fieldName: String, value: String) {
-        payload.append(MultiPart.boundaryStart)
-        payload.appendFormat(MultiPart.fieldFormat, fieldName)
-        payload.append(value + MultiPart.crLf)
-    }
 
     func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
@@ -154,5 +148,13 @@ class HttpHelper : NSObject, URLSessionDelegate {
                 completionHandler(URLSession.AuthChallengeDisposition.useCredential, credential)
             }
         }
+    }
+
+    // MARK: - Private helpers
+
+    private func addFormField(payload: NSMutableString, fieldName: String, value: String) {
+        payload.append(MultiPart.boundaryStart)
+        payload.appendFormat(MultiPart.fieldFormat, fieldName)
+        payload.append(value + MultiPart.crLf)
     }
 }
