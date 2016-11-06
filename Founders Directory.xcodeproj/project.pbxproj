@@ -11,6 +11,7 @@
 		3F3FEED21DC8D6C300436C69 /* SyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3FEED11DC8D6C300436C69 /* SyncHelper.swift */; };
 		3F6295C91DC8DEC600E365AC /* FounderDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6295C81DC8DEC600E365AC /* FounderDatabase.swift */; };
 		3F63E25D1DA31C8900D2B175 /* CircleTagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F63E25C1DA31C8900D2B175 /* CircleTagButton.swift */; };
+		3F6CED701DCEA18200ED6C1A /* AnalyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6CED6F1DCEA18200ED6C1A /* AnalyticsHelper.swift */; };
 		3F797A381DCA8B7A00BD6D20 /* HttpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F797A371DCA8B7A00BD6D20 /* HttpHelper.swift */; };
 		3F8999831DCB849200957C08 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8999821DCB849200957C08 /* PhotoManager.swift */; };
 		3FDEC9631D9351B100E82C48 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDEC9621D9351B100E82C48 /* Helpers.swift */; };
@@ -36,6 +37,7 @@
 		3F3FEED11DC8D6C300436C69 /* SyncHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncHelper.swift; sourceTree = "<group>"; };
 		3F6295C81DC8DEC600E365AC /* FounderDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FounderDatabase.swift; sourceTree = "<group>"; };
 		3F63E25C1DA31C8900D2B175 /* CircleTagButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleTagButton.swift; sourceTree = "<group>"; };
+		3F6CED6F1DCEA18200ED6C1A /* AnalyticsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsHelper.swift; sourceTree = "<group>"; };
 		3F797A371DCA8B7A00BD6D20 /* HttpHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpHelper.swift; sourceTree = "<group>"; };
 		3F8999821DCB849200957C08 /* PhotoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		3FDEC9621D9351B100E82C48 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				3F797A371DCA8B7A00BD6D20 /* HttpHelper.swift */,
 				3F8999821DCB849200957C08 /* PhotoManager.swift */,
 				3F3FEED11DC8D6C300436C69 /* SyncHelper.swift */,
+				3F6CED6F1DCEA18200ED6C1A /* AnalyticsHelper.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				3FED10931D9C091900C84541 /* ProfileViewControllerDataSource.swift in Sources */,
 				3F6295C91DC8DEC600E365AC /* FounderDatabase.swift in Sources */,
 				3F3FEED21DC8D6C300436C69 /* SyncHelper.swift in Sources */,
+				3F6CED701DCEA18200ED6C1A /* AnalyticsHelper.swift in Sources */,
 				3FF52E0A1D932A4D00C665EE /* ProfileViewController.swift in Sources */,
 				3FF52E0C1D93467200C665EE /* EditProfileViewController.swift in Sources */,
 				3F2534011D937CF200530F0E /* FounderCell.swift in Sources */,

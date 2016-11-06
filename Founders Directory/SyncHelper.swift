@@ -25,7 +25,7 @@ class SyncHelper {
         static let uploadPhoto = "uploadphoto"
     }
 
-    private struct Constants {
+    struct Constants {
         static let baseSyncUrl = "https://scriptures.byu.edu/founders/v4/"
         static let failureCode = "0"
         static let photoFounder = "founder"
@@ -125,8 +125,6 @@ class SyncHelper {
 
     private func loadSessionFromPreferences() {
         sessionToken = UserDefaults.standard.string(forKey: Constants.sessionTokenKey)
-        // NEEDSWORK: log in; don't hard-code the session ID
-        sessionToken = "41471165af5bb678bf58467811505450"
     }
 
     private func syncDeletedFounders(_ serverMaxVersion: Int) -> Int {
