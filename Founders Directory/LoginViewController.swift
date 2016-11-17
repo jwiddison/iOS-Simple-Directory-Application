@@ -8,7 +8,8 @@
 
 import UIKit
 
-class LoginViewController: UITableViewController, UITextViewDelegate {
+//class LoginViewController: UITableViewController, UITextViewDelegate {
+class LoginViewController: UIViewController {
     
     
     // MARK: - Outlets
@@ -19,32 +20,35 @@ class LoginViewController: UITableViewController, UITextViewDelegate {
     
     // MARK: - Actions
     @IBAction func logIn(_ sender: Any) {
+        if let app = UIApplication.shared.delegate as? AppDelegate {
+            app.displayMainVC()
+        }
     }
     
     
     
     // MARK: - Table View Delegate
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        userNameField.resignFirstResponder()
-        passwordField.resignFirstResponder()
-    }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        userNameField.resignFirstResponder()
+//        passwordField.resignFirstResponder()
+//    }
     
     
     // MARK: - Text Field Delegate
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return notEmpty(textField)
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
-        if reason == .committed {
-            if textField.tag == Storyboard.tagUsername {
-                passwordField.becomesFirstResponder()
-            } else {
-                
-            }
-        }
-    }
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        textField.resignFirstResponder()
+//        return notEmpty(textField)
+//    }
+//    
+//    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
+//        if reason == .committed {
+//            if textField.tag == Storyboard.tagUsername {
+//                passwordField.becomesFirstResponder()
+//            } else {
+//                
+//            }
+//        }
+//    }
 }

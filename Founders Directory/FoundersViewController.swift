@@ -31,6 +31,8 @@ class FoundersViewController : UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.leftBarButtonItem = navigationItem.backBarButtonItem
 
         foundersController = FetchedRecordsController(FounderDatabase.shared.dbQueue,
                                                       request: Request.foundersByName,

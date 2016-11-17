@@ -11,6 +11,10 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    struct Key {
+        static let vc = "vc"
+    }
+    
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -23,7 +27,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             _ = SyncHelper.shared.synchronizeFounders()
         }
+        
+        if UserDefaults.standard.string(forKey: Key.vc) == "login" {
+            displayLoginVC()
+        }
 
         return true
+    }
+    
+    func animateTransistion(to viewController: UIViewController) {
+        if let currentVC = window?.rootViewController {
+            viewController.view.frame = currentVC.view.frame
+            viewController.view.alpha = 0
+            window?.addSubview(viewController.view)
+            
+            UIView.animate(withDuration: 1, animations: {
+                viewController.view.alpha = 1
+            }, completion: { (finished) in
+                self.window!.rootViewController = viewController
+                self.window!.makeKeyAndVisible()
+            })
+        } else {
+            window?.rootViewController = viewController
+            window?.makeKeyAndVisible()
+        }
+    }
+    
+    func displayLoginVC() {
+        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+        
+        if let loginVC = storyboard.instantiateInitialViewController() as? LoginViewController {
+            animateTransistion(to: loginVC)
+        }
+        
+        UserDefaults.standard.set("login", forKey: Key.vc)
+        UserDefaults.standard.synchronize()
+    }
+    
+    func displayMainVC() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if let mainVC = storyboard.instantiateInitialViewController() as? UINavigationController {
+            animateTransistion(to: mainVC)
+        }
+        
+        UserDefaults.standard.set("main", forKey: Key.vc)
+        UserDefaults.standard.synchronize()
     }
 }
