@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		170113A81DE3462900783116 /* SetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170113A71DE3462900783116 /* SetPasswordViewController.swift */; };
 		171243BC1DD38137003D3FB0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171243BB1DD38137003D3FB0 /* LoginViewController.swift */; };
 		17928AA81DDD114100F70CC0 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17928AA71DDD114100F70CC0 /* Login.storyboard */; };
 		3F2534011D937CF200530F0E /* FounderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2534001D937CF200530F0E /* FounderCell.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		170113A71DE3462900783116 /* SetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPasswordViewController.swift; sourceTree = "<group>"; };
 		171243BB1DD38137003D3FB0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		17928AA71DDD114100F70CC0 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		1D2AB372FB55CFA44EB1B015 /* Pods-Founders Directory.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Founders Directory.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Founders Directory/Pods-Founders Directory.debug.xcconfig"; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				171243BB1DD38137003D3FB0 /* LoginViewController.swift */,
 				3FF52E091D932A4D00C665EE /* ProfileViewController.swift */,
 				3FED10921D9C091900C84541 /* ProfileViewControllerDataSource.swift */,
+				170113A71DE3462900783116 /* SetPasswordViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				3FF52E0C1D93467200C665EE /* EditProfileViewController.swift in Sources */,
 				3F2534011D937CF200530F0E /* FounderCell.swift in Sources */,
 				3FF52E081D931DCF00C665EE /* Founder.swift in Sources */,
+				170113A81DE3462900783116 /* SetPasswordViewController.swift in Sources */,
 				3FF253611D94E9F000B50FF3 /* CircleImageView.swift in Sources */,
 				3F797A381DCA8B7A00BD6D20 /* HttpHelper.swift in Sources */,
 				3FF253651D95865D00B50FF3 /* ProfileCell.swift in Sources */,

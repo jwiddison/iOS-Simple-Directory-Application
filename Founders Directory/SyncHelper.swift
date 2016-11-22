@@ -32,6 +32,7 @@ class SyncHelper {
         static let photoSpouse = "spouse"
         static let resultKey = "result"
         static let sessionTokenKey = "sessionKey"
+        static let userId = "UserId"
         static let successResult = "success"
     }
     
@@ -71,6 +72,33 @@ class SyncHelper {
         serverMaxVersion = syncNewFounders(serverMaxVersion);
         serverMaxVersion = syncDirtyFounders(serverMaxVersion);
         return syncServerFounderUpdates(maxVersion, serverMaxVersion);
+    }
+    
+    func loginUser(username: String, password: String) {
+        let requestURL = "\(Constants.baseSyncUrl)login.php?u=\(username)&p=\(password)&d=\(UIDevice.current.identifierForVendor!.uuidString)"
+        
+        HttpHelper.shared.getContent(urlString: requestURL) {
+            (data) in
+            if let usableData = data {
+                do{
+                    if let json = try JSONSerialization.jsonObject(with: usableData, options: .mutableContainers) as? [String: AnyObject]{
+                        print(json)
+                        if let sessionToken = json["sessionId"]{
+                            UserDefaults.standard.set(sessionToken, forKey: Constants.sessionTokenKey)
+                            print("This is the token: \(sessionToken)")
+                        }
+                        if let userID = json["userId"] {
+                            UserDefaults.standard.set(userID, forKey: Constants.userId)
+                            print("This is the userId: \(userID)")
+                        }
+                    }
+                }catch{
+                    print("Unable to parse JSON")
+                }
+            } else {
+                print("No Response Recieved")
+            }
+        }
     }
 
     // MARK: - Private helpers

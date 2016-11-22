@@ -13,17 +13,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     struct Key {
         static let vc = "vc"
+        static let login = "login"
+        static let main = "main"
     }
     
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         DispatchQueue.global().async {
-            // NEEDSWORK: Replace this code
-            UserDefaults.standard.set("41471165af5bb678bf58467811505450",
-                                      forKey: SyncHelper.Constants.sessionTokenKey)
-            UserDefaults.standard.synchronize()
-            // NEEDSWORK: log in; don't hard-code the session ID
+//            // NEEDSWORK: Replace this code
+//            UserDefaults.standard.set("41471165af5bb678bf58467811505450",
+//                                      forKey: SyncHelper.Constants.sessionTokenKey)
+//            UserDefaults.standard.synchronize()
+//            // NEEDSWORK: log in; don't hard-code the session ID
+            if UserDefaults.standard.value(forKey: SyncHelper.Constants.sessionTokenKey) != nil {
+                UserDefaults.standard.set(Key.main, forKey: Key.vc)
+            } else {
+                UserDefaults.standard.set(Key.login, forKey: Key.vc)
+            }
 
             _ = SyncHelper.shared.synchronizeFounders()
         }

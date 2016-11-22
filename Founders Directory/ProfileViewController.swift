@@ -130,10 +130,9 @@ class ProfileViewController : UIViewController {
         textButton.disabled = !founder.isPhoneListed
         emailButton.disabled = !founder.isEmailListed
 
-        // TODO: Fix this to be dynamic.
-//        if founder.email != "chewie@gmail.com" {
-//            navigationItem.rightBarButtonItem = nil
-//        }
+        if String(founder.id) != UserDefaults.standard.value(forKey: SyncHelper.Constants.userId) as! String {
+            navigationItem.rightBarButtonItem = nil
+        }
     }
 
     // MARK: - Actions
