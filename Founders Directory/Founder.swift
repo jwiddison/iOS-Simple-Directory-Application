@@ -10,9 +10,9 @@ import Foundation
 import GRDB
 
 class Founder : Record {
-
+    
     // MARK: - Properties
-
+    
     var id: Int
     var givenNames: String
     var surnames: String
@@ -63,15 +63,15 @@ class Founder : Record {
     var deleted: Int
     var dirty: Int
     var new: Int
-
+    
     // MARK: - Table mapping
-
+    
     override static var databaseTableName: String {
         return "founder"
     }
-
+    
     // MARK: - Field names
-
+    
     struct Field {
         static let id = "id"
         static let givenNames = "given_names"
@@ -124,7 +124,7 @@ class Founder : Record {
         static let dirty = "dirty"
         static let new = "new"
     }
-
+    
     static let allFieldsIdVersion = [
         Field.id, Field.givenNames, Field.surnames, Field.preferredFirstName,
         Field.preferredFullName, Field.cell, Field.email, Field.website, Field.linkedIn, Field.biography,
@@ -138,7 +138,7 @@ class Founder : Record {
         Field.mailingSameAs, Field.imageUrl, Field.spouseImageUrl, Field.registrationId,
         Field.isPostAdmin, Field.isPhoneListed, Field.isEmailListed, Field.version
     ]
-
+    
     struct Flag {
         static let admin = "1"
         static let available = "0"
@@ -151,9 +151,9 @@ class Founder : Record {
         static let normal = "0"
         static let unlisted = "0"
     }
-
+    
     // MARK: - Initialization
-
+    
     override init() {
         id = 0
         givenNames = ""
@@ -204,11 +204,11 @@ class Founder : Record {
         version = 0
         deleted = 0
         dirty = 0
-        new = 1
-
+        new = 0
+        
         super.init()
     }
-
+    
     required init(row: Row) {
         id = row.value(named: Field.id)
         givenNames = row.value(named: Field.givenNames)
@@ -268,7 +268,7 @@ class Founder : Record {
         // chewing up memory and CPU.  It's an Xcode bug.  Workaround: create
         // the dictionary long-form.
         var dictionary: [String : DatabaseValueConvertible?] = [ Field.id : id]
-
+        
         dictionary[Field.givenNames] = givenNames
         dictionary[Field.surnames] = surnames
         dictionary[Field.preferredFirstName] = preferredFirstName
@@ -318,7 +318,7 @@ class Founder : Record {
         dictionary[Field.deleted] = deleted
         dictionary[Field.dirty] = dirty
         dictionary[Field.new] = new
-
+        
         return dictionary
     }
     
