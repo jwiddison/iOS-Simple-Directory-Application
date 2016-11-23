@@ -22,6 +22,18 @@ class FoundersViewController : UITableViewController {
     private struct Request {
         static let foundersByName = Founder.order(Column(Founder.Field.preferredFullName))
     }
+    
+    // MARK: - Actions
+    @IBAction func LougoutUser(_ sender: Any) {
+        
+        SyncHelper.shared.clearUserDefaultsOnLogout()
+        
+        if let app = UIApplication.shared.delegate as? AppDelegate {
+            app.displayLoginVC()
+        }
+        
+    }
+    
 
     // MARK: - Properties
 

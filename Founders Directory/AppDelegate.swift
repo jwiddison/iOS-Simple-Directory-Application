@@ -21,25 +21,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         DispatchQueue.global().async {
-//            // NEEDSWORK: Replace this code
-//            UserDefaults.standard.set("41471165af5bb678bf58467811505450",
-//                                      forKey: SyncHelper.Constants.sessionTokenKey)
-//            UserDefaults.standard.synchronize()
-//            // NEEDSWORK: log in; don't hard-code the session ID
-            if UserDefaults.standard.value(forKey: SyncHelper.Constants.sessionTokenKey) != nil {
-                UserDefaults.standard.set(Key.main, forKey: Key.vc)
-            } else {
-                UserDefaults.standard.set(Key.login, forKey: Key.vc)
-            }
 
+            if UserDefaults.standard.value(forKey: SyncHelper.Constants.sessionTokenKey) != nil {
+                UserDefaults.standard.set("main", forKey: Key.vc)
+                UserDefaults.standard.synchronize()
+            } else {
+                UserDefaults.standard.set("login", forKey: Key.vc)
+                UserDefaults.standard.synchronize()
+            }
+            
+            self.updateFounderRecord()
+            
             _ = SyncHelper.shared.synchronizeFounders()
+
+            if UserDefaults.standard.string(forKey: Key.vc) == "login" {
+                self.displayLoginVC()
+            } else {
+                self.displayMainVC()
+            }
         }
         
-        if UserDefaults.standard.string(forKey: Key.vc) == "login" {
-            displayLoginVC()
-        }
-
         return true
+    }
+    
+    // MARK: - Helpers
+    
+    func updateFounderRecord() {
+        // NEEDSWORK: delete this test code that demonstrates how to update a record
+        let founder = FounderDatabase.shared.founderForId(1)
+        
+        if founder.preferredFullName == "Chewie Wookiee" {
+            founder.preferredFullName = "Chewie the Wookiee"
+        } else {
+            founder.preferredFullName = "Chewie Wookiee"
+        }
+        
+        founder.dirty = Int(Founder.Flag.dirty)!
+        FounderDatabase.shared.update(founder)
     }
     
     func animateTransistion(to viewController: UIViewController) {
@@ -48,9 +66,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             viewController.view.alpha = 0
             window?.addSubview(viewController.view)
             
-            UIView.animate(withDuration: 1, animations: {
-                viewController.view.alpha = 1
-            }, completion: { (finished) in
+            UIView.animate(withDuration: 1, animations: { viewController.view.alpha = 1 }, completion: {
+                (finished) in
                 self.window!.rootViewController = viewController
                 self.window!.makeKeyAndVisible()
             })

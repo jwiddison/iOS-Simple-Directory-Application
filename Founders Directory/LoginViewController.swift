@@ -30,9 +30,6 @@ class LoginViewController: UIViewController {
         
         loginUser(username: username!, password: password!)
         
-        if let app = UIApplication.shared.delegate as? AppDelegate {
-            app.displayMainVC()
-        }
         
     }
     
@@ -47,21 +44,30 @@ class LoginViewController: UIViewController {
             (data) in
             if let usableData = data {
                 do {
-                    if let json = try JSONSerialization.jsonObject(with: usableData, options: .mutableContainers) as? [String: AnyObject]{
-                        print(json)
+                    if let json = try JSONSerialization.jsonObject(with: usableData, options: .mutableContainers) as? [String: AnyObject] {
+                        
                         if let sessionToken = json["sessionId"]{
                             UserDefaults.standard.set(sessionToken, forKey: SyncHelper.Constants.sessionTokenKey)
                             print("This is the token: \(sessionToken)")
-                        }
-                        if let userID = json["userId"] {
-                            UserDefaults.standard.set(userID, forKey: SyncHelper.Constants.userId)
+                            
+                            if let userID = json["userId"] {
+                                UserDefaults.standard.set(userID, forKey: SyncHelper.Constants.userId)
+                            }
+                            
+                            if let app = UIApplication.shared.delegate as? AppDelegate {
+                                app.displayMainVC()
+                            }
+                        } else {
+                            shakeUI()
                         }
                     }
                 } catch {
                     print("Unable to parse JSON")
+                    shakeUI()
                 }
             } else {
                 print("No Response Recieved")
+                shakeUI()
             }
         }
     }

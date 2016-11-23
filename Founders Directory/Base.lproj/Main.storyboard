@@ -24,7 +24,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eHN-Fl-kzu" id="Quw-dJ-9jl">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="72"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="71"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NK6-vK-JLm">
@@ -76,8 +76,13 @@
                             <outlet property="delegate" destination="ELe-5b-d45" id="Wjb-Sb-fx6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Founders" id="UOU-uX-n80"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <navigationItem key="navigationItem" title="Founders" id="UOU-uX-n80">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="hOb-so-Wqs">
+                            <connections>
+                                <action selector="LougoutUser:" destination="ELe-5b-d45" id="twW-62-BP3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="rWX-sL-VaM" kind="show" identifier="ViewProfile" id="9Rg-wR-7I1"/>
                     </connections>
@@ -218,7 +223,7 @@ Millennial Enterprises</string>
                                         <rect key="frame" x="0.0" y="28" width="375" height="108"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wyG-pg-CAL" id="1dn-ik-P7t">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="108"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="107"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="deE-1F-XBF">
@@ -272,7 +277,7 @@ Millennial Enterprises</string>
                                         <rect key="frame" x="0.0" y="136" width="375" height="400"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FTr-De-mya" id="PBG-WA-QzD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="399"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Profile" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j9K-DH-FYS">
@@ -318,7 +323,6 @@ Millennial Enterprises</string>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="callButton" destination="YAf-hS-sYz" id="AEU-vz-9FU"/>
                         <outlet property="emailButton" destination="Oaz-Of-kKF" id="QJX-ha-vLu"/>
@@ -649,7 +653,6 @@ Millennial Enterprises</string>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="ezh-Yd-fJN"/>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="companyText" destination="zmV-b9-v8a" id="UaO-n8-0u8"/>
                         <outlet property="emailPrivateSwitch" destination="fo7-F1-mbS" id="c3f-me-dvq"/>
@@ -672,8 +675,7 @@ Millennial Enterprises</string>
             <objects>
                 <navigationController storyboardIdentifier="main" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HK5-4K-PoD" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="n76-gD-prG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="n76-gD-prG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -691,8 +693,7 @@ Millennial Enterprises</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LSw-s2-c9c" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="Rb1-rZ-P12">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Rb1-rZ-P12">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
