@@ -93,6 +93,11 @@ class EditProfileViewController : UITableViewController, UIImagePickerController
         }
     }
     
+    @IBAction func saveChangesToFounder(_ sender: Any) {
+        // TODO: Save changes to the founder
+    }
+    
+    
     // MARK: - Image picker controller delegate
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
