@@ -37,6 +37,8 @@ extension ProfileViewController : UITableViewDataSource {
                 profileCell.biographyLabel.text = founder.biography.length > 0 ?
                     founder.biography :
                 "This is not the Founder you're looking for.  You can go about your business.  Move along... move along."
+                profileCell.founderLevelLabel.text = founder.status
+                profileCell.yearSinceLabel.text = founder.yearJoined
             }
             
             return cell

@@ -24,6 +24,8 @@ class EditProfileViewController : UITableViewController, UIImagePickerController
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var phoneText: UITextField!
     @IBOutlet weak var spouseText: UITextField!
+    @IBOutlet weak var statusText: UITextField!
+    @IBOutlet weak var yearJoinedText: UITextField!
     @IBOutlet weak var emailPrivateSwitch: UISwitch!
     @IBOutlet weak var phonePrivateSwitch: UISwitch!
     @IBOutlet weak var profileText: UITextView!
@@ -58,6 +60,8 @@ class EditProfileViewController : UITableViewController, UIImagePickerController
             emailText.text = founder.email
             phoneText.text = founder.cell
             spouseText.text = founder.spousePreferredFullName
+            statusText.text = founder.status
+            yearJoinedText.text = founder.yearJoined
             emailPrivateSwitch.isOn = !founder.isEmailListed
             phonePrivateSwitch.isOn = !founder.isPhoneListed
             profileText.text = founder.biography

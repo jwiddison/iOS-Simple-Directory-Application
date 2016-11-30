@@ -613,8 +613,74 @@ Millennial Enterprises</string>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="38" id="WW7-Qi-A1l">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="38" id="uGh-iu-dK5">
                                         <rect key="frame" x="0.0" y="330" width="414" height="38"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uGh-iu-dK5" id="HLc-Qe-Rcq">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="38"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Founder Status" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9Lf-bN-NKk">
+                                                    <rect key="frame" x="16" y="12.000000000000002" width="90" height="14.66666666666667"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="90" id="4ap-7U-fbb"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" id="Md0-nn-JT9"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="udg-MY-Olc">
+                                                    <rect key="frame" x="114" y="4" width="292" height="30"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="udg-MY-Olc" firstAttribute="centerY" secondItem="HLc-Qe-Rcq" secondAttribute="centerY" id="DPu-p5-9Yf"/>
+                                                <constraint firstItem="udg-MY-Olc" firstAttribute="leading" secondItem="9Lf-bN-NKk" secondAttribute="trailing" constant="8" id="Oq6-g8-Uz6"/>
+                                                <constraint firstItem="9Lf-bN-NKk" firstAttribute="centerY" secondItem="HLc-Qe-Rcq" secondAttribute="centerY" id="aeI-Nq-PeJ"/>
+                                                <constraint firstItem="9Lf-bN-NKk" firstAttribute="leading" secondItem="HLc-Qe-Rcq" secondAttribute="leadingMargin" constant="8" id="c0O-f4-2qW"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="udg-MY-Olc" secondAttribute="trailing" id="nwD-A8-uuR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="38" id="I2f-so-bdW">
+                                        <rect key="frame" x="0.0" y="368" width="414" height="38"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I2f-so-bdW" id="ted-6c-ctF">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="38"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year Joined" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pfs-Lz-rLM">
+                                                    <rect key="frame" x="16" y="12.000000000000002" width="90" height="14.66666666666667"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="90" id="Cfe-Er-ISL"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" id="slC-Jf-MDk"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DrH-LA-gK1">
+                                                    <rect key="frame" x="114" y="4" width="292" height="30"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="DrH-LA-gK1" secondAttribute="trailing" id="19K-dX-BkR"/>
+                                                <constraint firstItem="DrH-LA-gK1" firstAttribute="centerY" secondItem="ted-6c-ctF" secondAttribute="centerY" id="JSY-o9-boE"/>
+                                                <constraint firstItem="Pfs-Lz-rLM" firstAttribute="centerY" secondItem="ted-6c-ctF" secondAttribute="centerY" id="bOp-ak-4Ca"/>
+                                                <constraint firstItem="DrH-LA-gK1" firstAttribute="leading" secondItem="Pfs-Lz-rLM" secondAttribute="trailing" constant="8" id="qnF-mQ-gIF"/>
+                                                <constraint firstItem="Pfs-Lz-rLM" firstAttribute="leading" secondItem="ted-6c-ctF" secondAttribute="leadingMargin" constant="8" id="s4t-Xi-VAP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="38" id="WW7-Qi-A1l">
+                                        <rect key="frame" x="0.0" y="406" width="414" height="38"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WW7-Qi-A1l" id="MJG-d8-EVn">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="38"/>
@@ -644,7 +710,7 @@ Millennial Enterprises</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="38" id="ugs-w8-ltc">
-                                        <rect key="frame" x="0.0" y="368" width="414" height="38"/>
+                                        <rect key="frame" x="0.0" y="444" width="414" height="38"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ugs-w8-ltc" id="1yA-II-CtT">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="38"/>
@@ -674,7 +740,7 @@ Millennial Enterprises</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="200" id="qbO-W2-36g">
-                                        <rect key="frame" x="0.0" y="406" width="414" height="200"/>
+                                        <rect key="frame" x="0.0" y="482" width="414" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qbO-W2-36g" id="Gac-C3-gV9">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
@@ -725,6 +791,8 @@ Millennial Enterprises</string>
                         <outlet property="phoneText" destination="Cil-b7-1F1" id="QtL-UQ-YdR"/>
                         <outlet property="profileText" destination="l67-Dp-mqH" id="SUb-bY-LXz"/>
                         <outlet property="spouseText" destination="vUi-ty-4eZ" id="KNz-B4-7eZ"/>
+                        <outlet property="statusText" destination="udg-MY-Olc" id="nNx-YM-4TW"/>
+                        <outlet property="yearJoinedText" destination="DrH-LA-gK1" id="m2p-op-F7H"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lUr-eO-R3R" userLabel="First Responder" sceneMemberID="firstResponder"/>

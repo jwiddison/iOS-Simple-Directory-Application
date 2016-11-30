@@ -70,8 +70,6 @@ class ProfileViewController : UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(self.founder.status)
-        print(self.founder.yearJoined)
 
         updateUI()
     }
@@ -133,7 +131,8 @@ class ProfileViewController : UIViewController {
         textButton.disabled = !founder.isPhoneListed
         emailButton.disabled = !founder.isEmailListed
         
-        if let cell = 
+        // TODO: Set value of year joined and founder status
+        
 
         if String(founder.id) != UserDefaults.standard.value(forKey: SyncHelper.Constants.userId) as! String {
             navigationItem.rightBarButtonItem = nil

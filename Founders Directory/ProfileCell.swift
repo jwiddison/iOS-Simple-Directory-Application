@@ -10,7 +10,7 @@ import UIKit
 
 class ProfileCell : UITableViewCell {
     @IBOutlet var biographyLabel: UILabel!
-    @IBOutlet weak var founderLevelLabel: UILabel!
-    @IBOutlet weak var yearSinceLabel: UILabel!
+    @IBOutlet var founderLevelLabel: UILabel!
+    @IBOutlet var yearSinceLabel: UILabel!
     
 }
