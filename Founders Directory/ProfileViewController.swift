@@ -70,6 +70,8 @@ class ProfileViewController : UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(self.founder.status)
+        print(self.founder.yearJoined)
 
         updateUI()
     }
@@ -103,6 +105,7 @@ class ProfileViewController : UIViewController {
     private func updateUI() {
         imageView.image = PhotoManager.shared.getPhotoFor(founderId: founder.id)
         nameLabel.text = founder.preferredFullName
+        
 
         var subtitleText = ""
 
@@ -129,6 +132,8 @@ class ProfileViewController : UIViewController {
         callButton.disabled = !founder.isPhoneListed
         textButton.disabled = !founder.isPhoneListed
         emailButton.disabled = !founder.isEmailListed
+        
+        if let cell = 
 
         if String(founder.id) != UserDefaults.standard.value(forKey: SyncHelper.Constants.userId) as! String {
             navigationItem.rightBarButtonItem = nil
