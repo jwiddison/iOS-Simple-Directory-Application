@@ -48,18 +48,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func updateFounderRecord() {
         // NEEDSWORK: delete this test code that demonstrates how to update a record
-        let userId = UserDefaults.standard.integer(forKey: SyncHelper.Constants.userId)
-        
-        let founder = FounderDatabase.shared.founderForId(userId)
-        
-        if founder.preferredFullName == "Jordan Widdison" {
-            founder.preferredFullName = "Jordan the Widdison"
-        } else {
-            founder.preferredFullName = "Jordan Widdison"
-        }
-        
-        founder.dirty = Int(Founder.Flag.dirty)!
-        FounderDatabase.shared.update(founder)
+//        let userId = UserDefaults.standard.integer(forKey: SyncHelper.Constants.userId)
+//        
+//        let founder = FounderDatabase.shared.founderForId(userId)
+//        
+//        if founder.preferredFullName == "Jordan W" {
+//            founder.preferredFullName = "Jordan Is this working?"
+//        } else {
+//            founder.preferredFullName = "Jordan Widdison"
+//        }
+//        
+//        founder.dirty = Int(Founder.Flag.dirty)!
+//        FounderDatabase.shared.update(founder)
     }
     
     func animateTransistion(to viewController: UIViewController) {

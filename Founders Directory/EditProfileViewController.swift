@@ -102,6 +102,18 @@ class EditProfileViewController : UITableViewController, UIImagePickerController
     
     @IBAction func saveChangesToFounder(_ sender: Any) {
         // TODO: Save changes to the founder
+        let userId = UserDefaults.standard.integer(forKey: SyncHelper.Constants.userId)
+        let founder = FounderDatabase.shared.founderForId(userId)
+        
+        if let name = self.nameText.text {
+            founder.preferredFullName = name
+        }
+        
+        founder.dirty = Int(Founder.Flag.dirty)!
+        FounderDatabase.shared.update(founder)
+        
+        _ = SyncHelper.shared.synchronizeFounders()
+
         
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
