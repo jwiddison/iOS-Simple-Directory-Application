@@ -775,7 +775,7 @@ Millennial Enterprises</string>
                                 <segue destination="hZz-yY-qfQ" kind="unwind" unwindAction="cancelEditWithSegue:" id="qnx-0g-hG8"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="ezh-Yd-fJN">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ezh-Yd-fJN">
                             <connections>
                                 <action selector="saveChangesToFounder:" destination="v1e-sc-J5m" id="C8O-LL-rSm"/>
                             </connections>

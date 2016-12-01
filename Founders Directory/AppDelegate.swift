@@ -48,12 +48,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func updateFounderRecord() {
         // NEEDSWORK: delete this test code that demonstrates how to update a record
-        let founder = FounderDatabase.shared.founderForId(1)
+        let userId = UserDefaults.standard.integer(forKey: SyncHelper.Constants.userId)
         
-        if founder.preferredFullName == "Chewie Wookiee" {
-            founder.preferredFullName = "Chewie the Wookiee"
+        let founder = FounderDatabase.shared.founderForId(userId)
+        
+        if founder.preferredFullName == "Jordan Widdison" {
+            founder.preferredFullName = "Jordan the Widdison"
         } else {
-            founder.preferredFullName = "Chewie Wookiee"
+            founder.preferredFullName = "Jordan Widdison"
         }
         
         founder.dirty = Int(Founder.Flag.dirty)!

@@ -55,6 +55,7 @@ class EditProfileViewController : UITableViewController, UIImagePickerController
     private func updateUI() {
         if let founder = self.founder {
             imageView.image = UIImage(named: founder.imageUrl)
+            print(founder.preferredFirstName)
             nameText.text = founder.preferredFullName
             companyText.text = founder.organizationName
             emailText.text = founder.email
@@ -99,6 +100,8 @@ class EditProfileViewController : UITableViewController, UIImagePickerController
     
     @IBAction func saveChangesToFounder(_ sender: Any) {
         // TODO: Save changes to the founder
+        
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
     
