@@ -54,7 +54,9 @@ class EditProfileViewController : UITableViewController, UIImagePickerController
     @objc
     private func updateUI() {
         if let founder = self.founder {
-            imageView.image = UIImage(named: founder.imageUrl)
+            if let photo = PhotoManager.shared.getPhotoFor(founderId: founder.id) {
+                imageView.image = photo
+            }
             print(founder.preferredFirstName)
             nameText.text = founder.preferredFullName
             companyText.text = founder.organizationName
