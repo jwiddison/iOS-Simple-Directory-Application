@@ -130,9 +130,6 @@ class ProfileViewController : UIViewController {
         callButton.disabled = !founder.isPhoneListed
         textButton.disabled = !founder.isPhoneListed
         emailButton.disabled = !founder.isEmailListed
-        
-        // TODO: Set value of year joined and founder status
-        
 
         if String(founder.id) != UserDefaults.standard.value(forKey: SyncHelper.Constants.userId) as! String {
             navigationItem.rightBarButtonItem = nil

@@ -9,7 +9,7 @@
 import UIKit
 
 //class LoginViewController: UITableViewController, UITextViewDelegate {
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     
     // MARK: - Outlets
@@ -29,7 +29,6 @@ class LoginViewController: UIViewController {
         let password = self.passwordField.text
         
         loginUser(username: username!, password: password!)
-        
         
     }
     
@@ -97,13 +96,14 @@ class LoginViewController: UIViewController {
     
     // MARK: - Text Field Delegate
     
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        textField.resignFirstResponder()
-//        return notEmpty(textField)
-//    }
-//    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
 //    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
 //        if reason == .committed {
+//            // Tab to the next field
 //            if textField.tag == Storyboard.tagUsername {
 //                passwordField.becomesFirstResponder()
 //            } else {

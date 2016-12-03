@@ -20,6 +20,7 @@ class EditProfileViewController : UITableViewController, UIImagePickerController
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameText: UITextField!
+    @IBOutlet weak var nicknameText: UITextField!
     @IBOutlet weak var companyText: UITextField!
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var phoneText: UITextField!
@@ -57,8 +58,8 @@ class EditProfileViewController : UITableViewController, UIImagePickerController
             if let photo = PhotoManager.shared.getPhotoFor(founderId: founder.id) {
                 imageView.image = photo
             }
-            print(founder.preferredFirstName)
             nameText.text = founder.preferredFullName
+            nicknameText.text = founder.preferredFirstName
             companyText.text = founder.organizationName
             emailText.text = founder.email
             phoneText.text = founder.cell
@@ -105,17 +106,52 @@ class EditProfileViewController : UITableViewController, UIImagePickerController
         let userId = UserDefaults.standard.integer(forKey: SyncHelper.Constants.userId)
         let founder = FounderDatabase.shared.founderForId(userId)
         
+        
+        if let profilePhoto = self.imageView.image {
+            PhotoManager.shared.savePhotoFor(founderId: userId, photo: profilePhoto)
+        }
+        
         if let name = self.nameText.text {
             founder.preferredFullName = name
+        }
+        if let nickname = self.nicknameText.text {
+            founder.preferredFirstName = nickname
+        }
+        if let company = self.companyText.text {
+            founder.organizationName = company
+        }
+        if let email = self.emailText.text {
+            founder.email = email
+        }
+        if let cell = self.phoneText.text {
+            founder.cell = cell
+        }
+        if let spouseName = self.spouseText.text {
+            founder.spousePreferredFullName = spouseName
+        }
+        if let status = self.statusText.text {
+            founder.status = status
+        }
+        if let yearJoined = self.yearJoinedText.text {
+            founder.yearJoined = yearJoined
+        }
+        
+        founder.isEmailListed = !emailPrivateSwitch.isOn
+        founder.isPhoneListed = !phonePrivateSwitch.isOn
+        
+        if let bio = self.profileText.text {
+            founder.biography = bio
         }
         
         founder.dirty = Int(Founder.Flag.dirty)!
         FounderDatabase.shared.update(founder)
         
-        _ = SyncHelper.shared.synchronizeFounders()
-
+        DispatchQueue.global().async {
+            _ = SyncHelper.shared.synchronizeFounders()
+        }
         
         self.navigationController?.dismiss(animated: true, completion: nil)
+        
     }
     
     

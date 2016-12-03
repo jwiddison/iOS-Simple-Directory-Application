@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UserDefaults.standard.synchronize()
             }
             
-            self.updateFounderRecord()
+//            self.updateFounderRecord()
             
             _ = SyncHelper.shared.synchronizeFounders()
 
@@ -46,8 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Helpers
     
-    func updateFounderRecord() {
-        // NEEDSWORK: delete this test code that demonstrates how to update a record
+//    func updateFounderRecord() {
+//        // NEEDSWORK: delete this test code that demonstrates how to update a record
 //        let userId = UserDefaults.standard.integer(forKey: SyncHelper.Constants.userId)
 //        
 //        let founder = FounderDatabase.shared.founderForId(userId)
@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        
 //        founder.dirty = Int(Founder.Flag.dirty)!
 //        FounderDatabase.shared.update(founder)
-    }
+//    }
     
     func animateTransistion(to viewController: UIViewController) {
         if let currentVC = window?.rootViewController {

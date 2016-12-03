@@ -17,11 +17,14 @@ class HttpHelper : NSObject, URLSessionDelegate {
     }
     
     private struct MultiPart {
-        static let boundaryEnd = "\r\n--*****--\r\n"
-        static let boundaryStart = "--*****\r\n"
+        static let boundary = "*****"
+        static let boundaryEnd = "\r\n--\(boundary)--\r\n"
+        static let boundaryStart = "--\(boundary)\r\n"
+        static let contentType = "Content-Type"
         static let crLf = "\r\n"
         static let fieldFormat: NSString = "Content-Disposition: form-data; name=\"%@\"\r\n\r\n"
         static let fileFormat = "Content-Disposition: form-data; name=\"file\"; filename=\"founderphoto\"\r\n\r\n"
+        static let formHeader = "multipart/form-data; boundary=\(boundary)"
         static let methodPost = "POST"
     }
     
@@ -159,6 +162,8 @@ class HttpHelper : NSObject, URLSessionDelegate {
             
             request.httpBody = requestData as Data
             request.httpMethod = MultiPart.methodPost
+            request.setValue(MultiPart.formHeader, forHTTPHeaderField: MultiPart.contentType)
+
             
             let semaphore = DispatchSemaphore(value: 0)
             var resultData: Data?
