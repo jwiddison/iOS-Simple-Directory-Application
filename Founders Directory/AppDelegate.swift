@@ -29,9 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UserDefaults.standard.set("login", forKey: Key.vc)
                 UserDefaults.standard.synchronize()
             }
-            
-//            self.updateFounderRecord()
-            
+                        
             _ = SyncHelper.shared.synchronizeFounders()
 
             if UserDefaults.standard.string(forKey: Key.vc) == "login" {

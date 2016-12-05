@@ -827,6 +827,7 @@ Millennial Enterprises</string>
                         <outlet property="spouseText" destination="vUi-ty-4eZ" id="KNz-B4-7eZ"/>
                         <outlet property="statusText" destination="udg-MY-Olc" id="nNx-YM-4TW"/>
                         <outlet property="yearJoinedText" destination="DrH-LA-gK1" id="m2p-op-F7H"/>
+                        <segue destination="hZz-yY-qfQ" kind="unwind" identifier="saveChanges" unwindAction="saveEditWithSegue:" id="3nS-aK-dpQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lUr-eO-R3R" userLabel="First Responder" sceneMemberID="firstResponder"/>

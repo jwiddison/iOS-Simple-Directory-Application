@@ -174,6 +174,8 @@ class SyncHelper {
             for (key, field) in fieldKeyMap {
                 if let value = founderRow.value(named: field) as? String {
                     arguments[key] = value
+                } else if let value = founderRow.value(named: field) as? NSNumber {
+                    arguments[key] = "\(value)"
                 } else {
                     arguments[key] = ""
                 }

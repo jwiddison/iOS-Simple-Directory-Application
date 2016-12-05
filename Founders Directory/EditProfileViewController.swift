@@ -102,13 +102,16 @@ class EditProfileViewController : UITableViewController, UIImagePickerController
     }
     
     @IBAction func saveChangesToFounder(_ sender: Any) {
-        // TODO: Save changes to the founder
+        
         let userId = UserDefaults.standard.integer(forKey: SyncHelper.Constants.userId)
         let founder = FounderDatabase.shared.founderForId(userId)
         
         
         if let profilePhoto = self.imageView.image {
             PhotoManager.shared.savePhotoFor(founderId: userId, photo: profilePhoto)
+            if let url = PhotoManager.shared.urlForFileName("founder\(founder.id)") {
+                founder.imageUrl = url
+            }
         }
         
         if let name = self.nameText.text {
@@ -150,10 +153,19 @@ class EditProfileViewController : UITableViewController, UIImagePickerController
             _ = SyncHelper.shared.synchronizeFounders()
         }
         
-        self.navigationController?.dismiss(animated: true, completion: nil)
+//        _ = SyncHelper.shared.synchronizeFounders()
+
+        self.founder = founder
         
+        self.performSegue(withIdentifier: "saveChanges", sender: self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destVC = segue.destination as? ProfileViewController {
+            destVC.founder = founder
+            destVC.updateUI()
+        }
+    }
     
     // MARK: - Image picker controller delegate
 
