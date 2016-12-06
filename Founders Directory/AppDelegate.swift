@@ -18,20 +18,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private struct Constants {
-        static let timerInterval = 600
+        static let timerInterval = 600.00
     }
     
     var window: UIWindow?
-    var timer: Timer!
+    var syncTimer: Timer!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         DispatchQueue.global().async {
+            if UserDefaults.standard.value(forKey: SyncHelper.Constants.sessionTokenKey) == nil {
+                UserDefaults.standard.set("41471165af5bb678bf58467811505450",
+                                          forKey: SyncHelper.Constants.sessionTokenKey)
+            }
             _ = SyncHelper.shared.synchronizeFounders()
         }
         
         startSyncTimer()
         
-        DispatchQueue.main().async {
+        DispatchQueue.main.async {
 
             if UserDefaults.standard.value(forKey: SyncHelper.Constants.sessionTokenKey) != nil {
                 UserDefaults.standard.set("main", forKey: Key.vc)
@@ -93,20 +97,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Timer Functions
     
-    private func startSyncTimer() {
-        //Runs every 10 minutes
-        syncTimer = Timer.scheduledTimer(
-            timeInterval: Constants.timerInterval,
-            target: self,
-            selector: #selector(runTimedCode),
-            userInfo: nil,
-            repeats: true
-        )
+    func startSyncTimer(){//Runs every 10 minutes
+        syncTimer = Timer.scheduledTimer(timeInterval: 600, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
     }
     
-    private func runTimedCode() {
+    func runTimedCode() {
         DispatchQueue.global().async {
             _ = SyncHelper.shared.synchronizeFounders()
         }
     }
+    
 }
