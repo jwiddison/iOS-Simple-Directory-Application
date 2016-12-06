@@ -17,10 +17,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         static let main = "main"
     }
     
+    private struct Constants {
+        static let timerInterval = 600
+    }
+    
     var window: UIWindow?
+    var timer: Timer!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         DispatchQueue.global().async {
+            _ = SyncHelper.shared.synchronizeFounders()
+        }
+        
+        startSyncTimer()
+        
+        DispatchQueue.main().async {
 
             if UserDefaults.standard.value(forKey: SyncHelper.Constants.sessionTokenKey) != nil {
                 UserDefaults.standard.set("main", forKey: Key.vc)
@@ -29,8 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UserDefaults.standard.set("login", forKey: Key.vc)
                 UserDefaults.standard.synchronize()
             }
-                        
-            _ = SyncHelper.shared.synchronizeFounders()
 
             if UserDefaults.standard.string(forKey: Key.vc) == "login" {
                 self.displayLoginVC()
@@ -38,27 +47,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.displayMainVC()
             }
         }
-        
         return true
     }
     
     // MARK: - Helpers
-    
-//    func updateFounderRecord() {
-//        // NEEDSWORK: delete this test code that demonstrates how to update a record
-//        let userId = UserDefaults.standard.integer(forKey: SyncHelper.Constants.userId)
-//        
-//        let founder = FounderDatabase.shared.founderForId(userId)
-//        
-//        if founder.preferredFullName == "Jordan W" {
-//            founder.preferredFullName = "Jordan Is this working?"
-//        } else {
-//            founder.preferredFullName = "Jordan Widdison"
-//        }
-//        
-//        founder.dirty = Int(Founder.Flag.dirty)!
-//        FounderDatabase.shared.update(founder)
-//    }
     
     func animateTransistion(to viewController: UIViewController) {
         if let currentVC = window?.rootViewController {
@@ -97,5 +89,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UserDefaults.standard.set("main", forKey: Key.vc)
         UserDefaults.standard.synchronize()
+    }
+    
+    // MARK: - Timer Functions
+    
+    private func startSyncTimer() {
+        //Runs every 10 minutes
+        syncTimer = Timer.scheduledTimer(
+            timeInterval: Constants.timerInterval,
+            target: self,
+            selector: #selector(runTimedCode),
+            userInfo: nil,
+            repeats: true
+        )
+    }
+    
+    private func runTimedCode() {
+        DispatchQueue.global().async {
+            _ = SyncHelper.shared.synchronizeFounders()
+        }
     }
 }

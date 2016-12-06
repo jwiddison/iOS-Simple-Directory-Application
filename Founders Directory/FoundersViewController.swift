@@ -24,14 +24,12 @@ class FoundersViewController : UITableViewController {
     }
     
     // MARK: - Actions
+    
     @IBAction func LougoutUser(_ sender: Any) {
-        
         SyncHelper.shared.clearUserDefaultsOnLogout()
-        
         if let app = UIApplication.shared.delegate as? AppDelegate {
             app.displayLoginVC()
         }
-        
     }
     
 
@@ -98,32 +96,56 @@ class FoundersViewController : UITableViewController {
 
     // MARK: - Table view data source
     
+//    func configure(_ cell: UITableViewCell, at indexPath: IndexPath) {
+//        let founder = foundersController.record(at: indexPath)
+//
+//        if let founderCell = cell as? FounderCell {
+//            founderCell.founderNameLabel?.text = founder.preferredFullName
+//            founderCell.founderCompanyLabel?.text = founder.organizationName
+//            
+//            if let imageView = founderCell.founderImageView {
+//                // Note that when we use one of the default tableview cell types, we get the
+//                // imageview property for free.  Here we load it from one of the pre-loaded
+//                // image assets and then make it circular by setting the corner radius.
+//                
+//                // TODO: fix this
+//                
+//
+////                if let photoImage = PhotoManager.shared.getPhotoFor(founderId: founder.id) {
+////                    imageView.image = photoImage
+////                }
+//                
+//                
+//
+//                imageView.layer.cornerRadius = Storyboard.CornerRadius
+//                imageView.layer.masksToBounds = true
+//            }
+//        }
+//    }
+    
+    
     func configure(_ cell: UITableViewCell, at indexPath: IndexPath) {
         let founder = foundersController.record(at: indexPath)
-
         if let founderCell = cell as? FounderCell {
             founderCell.founderNameLabel?.text = founder.preferredFullName
             founderCell.founderCompanyLabel?.text = founder.organizationName
             
             if let imageView = founderCell.founderImageView {
-                // Note that when we use one of the default tableview cell types, we get the
-                // imageview property for free.  Here we load it from one of the pre-loaded
-                // image assets and then make it circular by setting the corner radius.
                 imageView.image = UIImage(named: "defaultPhoto-60")
-
                 DispatchQueue.global().async {
                     if let photoImage = PhotoManager.shared.getPhotoFor(founderId: founder.id) {
-                        DispatchQueue.main.async {
+                        DispatchQueue.main.async{
                             imageView.image = photoImage
+                            let _ = TableViewEvent.update(indexPath: indexPath, changes: ["null" : DatabaseValue.null])
                         }
                     }
                 }
-
                 imageView.layer.cornerRadius = Storyboard.CornerRadius
                 imageView.layer.masksToBounds = true
             }
         }
     }
+    
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.CellIdentifier, for: indexPath)

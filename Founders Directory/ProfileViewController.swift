@@ -161,13 +161,13 @@ class ProfileViewController : UIViewController {
         }
     }
     
-    @IBAction func cancelEdit(segue: UIStoryboardSegue) {
-        // Ignore
-    }
-
-    @IBAction func saveEdit(segue: UIStoryboardSegue) {
-        // NEEDSWORK: reload the edited Founder record
-    }
+//    @IBAction func cancelEdit(segue: UIStoryboardSegue) {
+//        // Ignore
+//    }
+//
+//    @IBAction func saveEdit(segue: UIStoryboardSegue) {
+//        // NEEDSWORK: reload the edited Founder record
+//    }
 }
 
 // MARK: - Table view delegate

@@ -103,7 +103,7 @@ class FounderDatabase {
     // MARK: - Helpers
     
     func delete(_ founderId: Int) {
-        // NEEDSWORK
+        // NEEDSWORK - After project 4.
     }
     
     func deletedFounderIds() -> [Int] {

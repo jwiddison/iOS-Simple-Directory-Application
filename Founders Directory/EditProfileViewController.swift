@@ -152,13 +152,12 @@ class EditProfileViewController : UITableViewController, UIImagePickerController
         DispatchQueue.global().async {
             _ = SyncHelper.shared.synchronizeFounders()
         }
-        
-//        _ = SyncHelper.shared.synchronizeFounders()
 
         self.founder = founder
         
         self.performSegue(withIdentifier: "saveChanges", sender: self)
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destVC = segue.destination as? ProfileViewController {
