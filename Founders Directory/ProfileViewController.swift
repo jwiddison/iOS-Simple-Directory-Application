@@ -139,8 +139,11 @@ class ProfileViewController : UIViewController {
 
     @IBAction func callPhone(_ sender: CircleTagButton) {
         if founder.isPhoneListed && founder.cell.length > 0 {
-            if let url = URL(string: "tel://\(founder.cell)") {
-                UIApplication.shared.open(url)
+            if let phoneCallURL = URL(string:"tel://\(removeSpecialCharsFromPhone(text: founder.cell))") {
+                let application:UIApplication = UIApplication.shared
+                if application.canOpenURL(phoneCallURL as URL) {
+                    application.open(phoneCallURL as URL)
+                }
             }
         }
     }
@@ -155,19 +158,19 @@ class ProfileViewController : UIViewController {
 
     @IBAction func sendText(_ sender: CircleTagButton) {
         if founder.isPhoneListed && founder.cell.length > 0 {
-            if let url = URL(string: "sms://\(founder.cell)") {
-                UIApplication.shared.open(url)
+            if let smsURL = URL(string: "sms:\(removeSpecialCharsFromPhone(text: founder.cell))") {
+                UIApplication.shared.open(smsURL as URL, options: [:], completionHandler: nil)
             }
         }
     }
     
-//    @IBAction func cancelEdit(segue: UIStoryboardSegue) {
-//        // Ignore
-//    }
-//
-//    @IBAction func saveEdit(segue: UIStoryboardSegue) {
-//        // NEEDSWORK: reload the edited Founder record
-//    }
+    @IBAction func cancelEdit(segue: UIStoryboardSegue) {
+        // Ignore
+    }
+
+    @IBAction func saveEdit(segue: UIStoryboardSegue) {
+        // NEEDSWORK: reload the edited Founder record
+    }
 }
 
 // MARK: - Table view delegate
@@ -222,6 +225,12 @@ extension ProfileViewController : UITableViewDelegate {
 
     // MARK: - Helpers
 
+    func removeSpecialCharsFromPhone(text: String) -> String {
+        let okayChars : Set<Character> =
+            Set("0123456789".characters)
+        return String(text.characters.filter {okayChars.contains($0) })
+    }
+    
     private func collapseHeader() {
         view.layoutIfNeeded()
         UIView.animate(withDuration: Animation.Duration) {

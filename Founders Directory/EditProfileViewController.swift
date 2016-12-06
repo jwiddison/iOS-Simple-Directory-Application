@@ -15,6 +15,10 @@ class EditProfileViewController : UITableViewController, UIImagePickerController
     private struct Storyboard {
         static let TakePhotoLabel = "Take Photo"
     }
+    
+    private struct Constants {
+        static let returnSegueIdentifier = "saveChanges"
+    }
 
     // MARK: - Outlets
     
@@ -106,44 +110,60 @@ class EditProfileViewController : UITableViewController, UIImagePickerController
         let userId = UserDefaults.standard.integer(forKey: SyncHelper.Constants.userId)
         let founder = FounderDatabase.shared.founderForId(userId)
         
-        
         if let profilePhoto = self.imageView.image {
             PhotoManager.shared.savePhotoFor(founderId: userId, photo: profilePhoto)
             if let url = PhotoManager.shared.urlForFileName("founder\(founder.id)") {
                 founder.imageUrl = url
             }
         }
-        
         if let name = self.nameText.text {
-            founder.preferredFullName = name
+            if name != founder.preferredFullName {
+                founder.preferredFullName = name
+            }
         }
         if let nickname = self.nicknameText.text {
-            founder.preferredFirstName = nickname
+            if nickname != founder.preferredFirstName {
+                founder.preferredFirstName = nickname
+            }
         }
         if let company = self.companyText.text {
-            founder.organizationName = company
+            if company != founder.organizationName {
+                founder.organizationName = company
+            }
         }
         if let email = self.emailText.text {
-            founder.email = email
+            if email != founder.email {
+                founder.email = email
+            }
         }
         if let cell = self.phoneText.text {
-            founder.cell = cell
+            if cell != founder.cell {
+                founder.cell = cell
+            }
         }
         if let spouseName = self.spouseText.text {
-            founder.spousePreferredFullName = spouseName
+            if spouseName != founder.spousePreferredFullName {
+                founder.spousePreferredFullName = spouseName
+            }
         }
         if let status = self.statusText.text {
-            founder.status = status
+            if status != founder.status {
+                founder.status = status
+            }
         }
         if let yearJoined = self.yearJoinedText.text {
-            founder.yearJoined = yearJoined
+            if yearJoined != founder.yearJoined {
+                founder.yearJoined = yearJoined
+            }
         }
         
         founder.isEmailListed = !emailPrivateSwitch.isOn
         founder.isPhoneListed = !phonePrivateSwitch.isOn
         
         if let bio = self.profileText.text {
-            founder.biography = bio
+            if bio != founder.biography {
+                founder.biography = bio
+            }
         }
         
         founder.dirty = Int(Founder.Flag.dirty)!
@@ -155,14 +175,16 @@ class EditProfileViewController : UITableViewController, UIImagePickerController
 
         self.founder = founder
         
-        self.performSegue(withIdentifier: "saveChanges", sender: self)
+        self.performSegue(withIdentifier: Constants.returnSegueIdentifier, sender: self)
     }
     
+    // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destVC = segue.destination as? ProfileViewController {
             destVC.founder = founder
             destVC.updateUI()
+            destVC.tableView.reloadData()
         }
     }
     
